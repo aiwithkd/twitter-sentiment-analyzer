@@ -1,0 +1,3835 @@
+{
+  "generated_at": "2026-04-25 20:09:59",
+  "dataset": {
+    "total_tweets": 3000,
+    "train_size": 2400,
+    "test_size": 600,
+    "vocab_size": 844,
+    "tfidf_features": 844,
+    "sentiment_dist": {
+      "positive": 1319,
+      "negative": 923,
+      "neutral": 758
+    },
+    "topic_dist": {
+      "entertainment": 639,
+      "tech": 618,
+      "politics": 597,
+      "sports": 583,
+      "finance": 563
+    }
+  },
+  "model": {
+    "name": "Logistic Regression",
+    "features": "TF-IDF (unigram + bigram, max 8000 features)",
+    "preprocessing": "Lowercasing, URL/mention removal, stopword filtering",
+    "class_weight": "balanced",
+    "regularization": "C=1.0"
+  },
+  "metrics": {
+    "accuracy": 0.95,
+    "roc_auc_weighted": 0.9971,
+    "cv_f1_mean": 0.9497,
+    "cv_f1_std": 0.0063,
+    "per_class": {
+      "positive": {
+        "precision": 0.9763,
+        "recall": 0.9356,
+        "f1": 0.9555,
+        "support": 264
+      },
+      "negative": {
+        "precision": 0.9323,
+        "recall": 0.9676,
+        "f1": 0.9496,
+        "support": 185
+      },
+      "neutral": {
+        "precision": 0.929,
+        "recall": 0.9536,
+        "f1": 0.9412,
+        "support": 151
+      }
+    }
+  },
+  "confusion_matrix": {
+    "labels": [
+      "positive",
+      "negative",
+      "neutral"
+    ],
+    "matrix": [
+      [
+        247,
+        9,
+        8
+      ],
+      [
+        3,
+        179,
+        3
+      ],
+      [
+        3,
+        4,
+        144
+      ]
+    ]
+  },
+  "top_features": {
+    "negative": [
+      {
+        "word": "terrible",
+        "weight": 2.363
+      },
+      {
+        "word": "disgraceful",
+        "weight": 1.9677
+      },
+      {
+        "word": "worst",
+        "weight": 1.9641
+      },
+      {
+        "word": "complete",
+        "weight": 1.8548
+      },
+      {
+        "word": "unacceptable",
+        "weight": 1.8419
+      },
+      {
+        "word": "fired",
+        "weight": 1.812
+      },
+      {
+        "word": "accountability",
+        "weight": 1.7632
+      },
+      {
+        "word": "waste",
+        "weight": 1.7583
+      },
+      {
+        "word": "again",
+        "weight": 1.6984
+      },
+      {
+        "word": "total",
+        "weight": 1.6454
+      },
+      {
+        "word": "embarrassing",
+        "weight": 1.5821
+      },
+      {
+        "word": "everything",
+        "weight": 1.5507
+      },
+      {
+        "word": "money",
+        "weight": 1.4818
+      },
+      {
+        "word": "unusable",
+        "weight": 1.3028
+      },
+      {
+        "word": "unusable now",
+        "weight": 1.3028
+      }
+    ],
+    "neutral": [
+      {
+        "word": "watching",
+        "weight": 2.9938
+      },
+      {
+        "word": "checked",
+        "weight": 2.953
+      },
+      {
+        "word": "following",
+        "weight": 2.8825
+      },
+      {
+        "word": "reading",
+        "weight": 2.7428
+      },
+      {
+        "word": "heard",
+        "weight": 2.2099
+      },
+      {
+        "word": "noticed",
+        "weight": 1.8483
+      },
+      {
+        "word": "saw",
+        "weight": 1.8266
+      },
+      {
+        "word": "watchlist",
+        "weight": 1.587
+      },
+      {
+        "word": "reviewed portfolio",
+        "weight": 1.4639
+      },
+      {
+        "word": "reviewed",
+        "weight": 1.4639
+      },
+      {
+        "word": "read",
+        "weight": 1.4555
+      },
+      {
+        "word": "halfway through",
+        "weight": 1.3899
+      },
+      {
+        "word": "through",
+        "weight": 1.3899
+      },
+      {
+        "word": "monitoring",
+        "weight": 1.3873
+      },
+      {
+        "word": "monitoring market",
+        "weight": 1.3873
+      }
+    ],
+    "positive": [
+      {
+        "word": "finally",
+        "weight": 1.8723
+      },
+      {
+        "word": "brilliant",
+        "weight": 1.8169
+      },
+      {
+        "word": "solid",
+        "weight": 1.6269
+      },
+      {
+        "word": "great",
+        "weight": 1.6223
+      },
+      {
+        "word": "amazing",
+        "weight": 1.5379
+      },
+      {
+        "word": "best",
+        "weight": 1.5164
+      },
+      {
+        "word": "profits",
+        "weight": 1.4496
+      },
+      {
+        "word": "strong",
+        "weight": 1.4286
+      },
+      {
+        "word": "market booming",
+        "weight": 1.2858
+      },
+      {
+        "word": "booming",
+        "weight": 1.2858
+      },
+      {
+        "word": "inspiring speech",
+        "weight": 1.2679
+      },
+      {
+        "word": "inspiring",
+        "weight": 1.2679
+      },
+      {
+        "word": "fast now",
+        "weight": 1.2603
+      },
+      {
+        "word": "fast",
+        "weight": 1.2603
+      },
+      {
+        "word": "growing",
+        "weight": 1.2287
+      }
+    ]
+  },
+  "topic_sentiment": [
+    {
+      "topic": "entertainment",
+      "sentiment": "negative",
+      "count": 43
+    },
+    {
+      "topic": "entertainment",
+      "sentiment": "neutral",
+      "count": 26
+    },
+    {
+      "topic": "entertainment",
+      "sentiment": "positive",
+      "count": 64
+    },
+    {
+      "topic": "finance",
+      "sentiment": "negative",
+      "count": 40
+    },
+    {
+      "topic": "finance",
+      "sentiment": "neutral",
+      "count": 28
+    },
+    {
+      "topic": "finance",
+      "sentiment": "positive",
+      "count": 49
+    },
+    {
+      "topic": "politics",
+      "sentiment": "negative",
+      "count": 30
+    },
+    {
+      "topic": "politics",
+      "sentiment": "neutral",
+      "count": 28
+    },
+    {
+      "topic": "politics",
+      "sentiment": "positive",
+      "count": 47
+    },
+    {
+      "topic": "sports",
+      "sentiment": "negative",
+      "count": 37
+    },
+    {
+      "topic": "sports",
+      "sentiment": "neutral",
+      "count": 32
+    },
+    {
+      "topic": "sports",
+      "sentiment": "positive",
+      "count": 41
+    },
+    {
+      "topic": "tech",
+      "sentiment": "negative",
+      "count": 35
+    },
+    {
+      "topic": "tech",
+      "sentiment": "neutral",
+      "count": 37
+    },
+    {
+      "topic": "tech",
+      "sentiment": "positive",
+      "count": 63
+    }
+  ],
+  "monthly_trend": [
+    {
+      "month": "2024-01",
+      "sentiment": "negative",
+      "count": 83
+    },
+    {
+      "month": "2024-01",
+      "sentiment": "neutral",
+      "count": 55
+    },
+    {
+      "month": "2024-01",
+      "sentiment": "positive",
+      "count": 127
+    },
+    {
+      "month": "2024-02",
+      "sentiment": "negative",
+      "count": 73
+    },
+    {
+      "month": "2024-02",
+      "sentiment": "neutral",
+      "count": 56
+    },
+    {
+      "month": "2024-02",
+      "sentiment": "positive",
+      "count": 120
+    },
+    {
+      "month": "2024-03",
+      "sentiment": "negative",
+      "count": 78
+    },
+    {
+      "month": "2024-03",
+      "sentiment": "neutral",
+      "count": 57
+    },
+    {
+      "month": "2024-03",
+      "sentiment": "positive",
+      "count": 96
+    },
+    {
+      "month": "2024-04",
+      "sentiment": "negative",
+      "count": 70
+    },
+    {
+      "month": "2024-04",
+      "sentiment": "neutral",
+      "count": 64
+    },
+    {
+      "month": "2024-04",
+      "sentiment": "positive",
+      "count": 114
+    },
+    {
+      "month": "2024-05",
+      "sentiment": "negative",
+      "count": 77
+    },
+    {
+      "month": "2024-05",
+      "sentiment": "neutral",
+      "count": 51
+    },
+    {
+      "month": "2024-05",
+      "sentiment": "positive",
+      "count": 111
+    },
+    {
+      "month": "2024-06",
+      "sentiment": "negative",
+      "count": 74
+    },
+    {
+      "month": "2024-06",
+      "sentiment": "neutral",
+      "count": 83
+    },
+    {
+      "month": "2024-06",
+      "sentiment": "positive",
+      "count": 114
+    },
+    {
+      "month": "2024-07",
+      "sentiment": "negative",
+      "count": 89
+    },
+    {
+      "month": "2024-07",
+      "sentiment": "neutral",
+      "count": 79
+    },
+    {
+      "month": "2024-07",
+      "sentiment": "positive",
+      "count": 123
+    },
+    {
+      "month": "2024-08",
+      "sentiment": "negative",
+      "count": 87
+    },
+    {
+      "month": "2024-08",
+      "sentiment": "neutral",
+      "count": 82
+    },
+    {
+      "month": "2024-08",
+      "sentiment": "positive",
+      "count": 105
+    },
+    {
+      "month": "2024-09",
+      "sentiment": "negative",
+      "count": 58
+    },
+    {
+      "month": "2024-09",
+      "sentiment": "neutral",
+      "count": 58
+    },
+    {
+      "month": "2024-09",
+      "sentiment": "positive",
+      "count": 91
+    },
+    {
+      "month": "2024-10",
+      "sentiment": "negative",
+      "count": 75
+    },
+    {
+      "month": "2024-10",
+      "sentiment": "neutral",
+      "count": 65
+    },
+    {
+      "month": "2024-10",
+      "sentiment": "positive",
+      "count": 100
+    },
+    {
+      "month": "2024-11",
+      "sentiment": "negative",
+      "count": 66
+    },
+    {
+      "month": "2024-11",
+      "sentiment": "neutral",
+      "count": 53
+    },
+    {
+      "month": "2024-11",
+      "sentiment": "positive",
+      "count": 120
+    },
+    {
+      "month": "2024-12",
+      "sentiment": "negative",
+      "count": 93
+    },
+    {
+      "month": "2024-12",
+      "sentiment": "neutral",
+      "count": 55
+    },
+    {
+      "month": "2024-12",
+      "sentiment": "positive",
+      "count": 98
+    }
+  ],
+  "sample_predictions": [
+    {
+      "text": "literally finally works perfectly",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.854,
+      "prob_positive": 0.854,
+      "prob_negative": 0.081,
+      "prob_neutral": 0.065
+    },
+    {
+      "text": "finally works perfectly #tech",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.872,
+      "prob_positive": 0.872,
+      "prob_negative": 0.062,
+      "prob_neutral": 0.066
+    },
+    {
+      "text": "worst season ever via @user_0903",
+      "topic": "sports",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.932,
+      "prob_positive": 0.046,
+      "prob_negative": 0.932,
+      "prob_neutral": 0.022
+    },
+    {
+      "text": "waste of time #series @user_2936",
+      "topic": "entertainment",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.806,
+      "prob_positive": 0.108,
+      "prob_negative": 0.806,
+      "prob_neutral": 0.086
+    },
+    {
+      "text": "solid quarter #stocks",
+      "topic": "finance",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.86,
+      "prob_positive": 0.86,
+      "prob_negative": 0.074,
+      "prob_neutral": 0.067
+    },
+    {
+      "text": "positive change cc @user_2606",
+      "topic": "politics",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.875,
+      "prob_positive": 0.875,
+      "prob_negative": 0.053,
+      "prob_neutral": 0.072
+    },
+    {
+      "text": "so fast now",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.888,
+      "prob_positive": 0.888,
+      "prob_negative": 0.069,
+      "prob_neutral": 0.043
+    },
+    {
+      "text": "commentary ongoing #NBA @user_2782",
+      "topic": "sports",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.765,
+      "prob_positive": 0.11,
+      "prob_negative": 0.125,
+      "prob_neutral": 0.765
+    },
+    {
+      "text": "using it daily cc @user_2606",
+      "topic": "tech",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.781,
+      "prob_positive": 0.112,
+      "prob_negative": 0.106,
+      "prob_neutral": 0.781
+    },
+    {
+      "text": "total incompetence",
+      "topic": "politics",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.924,
+      "prob_positive": 0.04,
+      "prob_negative": 0.924,
+      "prob_neutral": 0.036
+    },
+    {
+      "text": "tbf outstanding performance #cricket",
+      "topic": "sports",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.818,
+      "prob_positive": 0.818,
+      "prob_negative": 0.104,
+      "prob_neutral": 0.078
+    },
+    {
+      "text": "no tactics whatsoever #cricket @user_0274",
+      "topic": "sports",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.868,
+      "prob_positive": 0.072,
+      "prob_negative": 0.868,
+      "prob_neutral": 0.06
+    },
+    {
+      "text": "world class #NBA @user_2644",
+      "topic": "sports",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.83,
+      "prob_positive": 0.83,
+      "prob_negative": 0.1,
+      "prob_neutral": 0.07
+    },
+    {
+      "text": "cinematic masterpiece",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.89,
+      "prob_positive": 0.89,
+      "prob_negative": 0.058,
+      "prob_neutral": 0.052
+    },
+    {
+      "text": "brilliant goal cc @user_2285",
+      "topic": "sports",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.925,
+      "prob_positive": 0.925,
+      "prob_negative": 0.038,
+      "prob_neutral": 0.037
+    },
+    {
+      "text": "fwiw finally works perfectly",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.836,
+      "prob_positive": 0.836,
+      "prob_negative": 0.084,
+      "prob_neutral": 0.08
+    },
+    {
+      "text": "heard mixed reviews #movies",
+      "topic": "entertainment",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.885,
+      "prob_positive": 0.059,
+      "prob_negative": 0.056,
+      "prob_neutral": 0.885
+    },
+    {
+      "text": "worst season ever #AI",
+      "topic": "tech",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.932,
+      "prob_positive": 0.046,
+      "prob_negative": 0.932,
+      "prob_neutral": 0.022
+    },
+    {
+      "text": "amazing features cc @user_1343",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.89,
+      "prob_positive": 0.89,
+      "prob_negative": 0.057,
+      "prob_neutral": 0.052
+    },
+    {
+      "text": "we'll see how this plays out #Netflix",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.403,
+      "prob_positive": 0.403,
+      "prob_negative": 0.278,
+      "prob_neutral": 0.319
+    },
+    {
+      "text": "amazing soundtrack #Hollywood @user_0112",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.832,
+      "prob_positive": 0.832,
+      "prob_negative": 0.086,
+      "prob_neutral": 0.082
+    },
+    {
+      "text": "terrible plot #Bollywood",
+      "topic": "entertainment",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.858,
+      "prob_positive": 0.077,
+      "prob_negative": 0.858,
+      "prob_neutral": 0.064
+    },
+    {
+      "text": "shocking result cc @user_2042",
+      "topic": "sports",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.862,
+      "prob_positive": 0.074,
+      "prob_negative": 0.862,
+      "prob_neutral": 0.063
+    },
+    {
+      "text": "saw it trending #market",
+      "topic": "finance",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.893,
+      "prob_positive": 0.059,
+      "prob_negative": 0.049,
+      "prob_neutral": 0.893
+    },
+    {
+      "text": "tbh beat estimates",
+      "topic": "finance",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.834,
+      "prob_positive": 0.834,
+      "prob_negative": 0.088,
+      "prob_neutral": 0.079
+    },
+    {
+      "text": "time will tell via @user_0777",
+      "topic": "tech",
+      "actual": "negative",
+      "predicted": "neutral",
+      "correct": false,
+      "confidence": 0.461,
+      "prob_positive": 0.294,
+      "prob_negative": 0.245,
+      "prob_neutral": 0.461
+    },
+    {
+      "text": "totally hooked #Bollywood",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.84,
+      "prob_positive": 0.84,
+      "prob_negative": 0.091,
+      "prob_neutral": 0.069
+    },
+    {
+      "text": "brilliant acting #Hollywood",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.809,
+      "prob_positive": 0.809,
+      "prob_negative": 0.119,
+      "prob_neutral": 0.072
+    },
+    {
+      "text": "reading the match report cc @user_0455",
+      "topic": "sports",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.942,
+      "prob_positive": 0.034,
+      "prob_negative": 0.024,
+      "prob_neutral": 0.942
+    },
+    {
+      "text": "worst season ever",
+      "topic": "sports",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.932,
+      "prob_positive": 0.046,
+      "prob_negative": 0.932,
+      "prob_neutral": 0.022
+    },
+    {
+      "text": "tbf shocking result via @user_0624",
+      "topic": "sports",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.795,
+      "prob_positive": 0.115,
+      "prob_negative": 0.795,
+      "prob_neutral": 0.09
+    },
+    {
+      "text": "highly recommend via @user_1316",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.892,
+      "prob_positive": 0.892,
+      "prob_negative": 0.057,
+      "prob_neutral": 0.05
+    },
+    {
+      "text": "following the news",
+      "topic": "finance",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.94,
+      "prob_positive": 0.031,
+      "prob_negative": 0.03,
+      "prob_neutral": 0.94
+    },
+    {
+      "text": "brilliant acting #FIFA @user_0996",
+      "topic": "sports",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.886,
+      "prob_positive": 0.886,
+      "prob_negative": 0.076,
+      "prob_neutral": 0.038
+    },
+    {
+      "text": "market is booming",
+      "topic": "finance",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.881,
+      "prob_positive": 0.881,
+      "prob_negative": 0.06,
+      "prob_neutral": 0.059
+    },
+    {
+      "text": "highly recommend via @user_2388",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.892,
+      "prob_positive": 0.892,
+      "prob_negative": 0.057,
+      "prob_neutral": 0.05
+    },
+    {
+      "text": "waste of time #Netflix @user_1267",
+      "topic": "entertainment",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.825,
+      "prob_positive": 0.089,
+      "prob_negative": 0.825,
+      "prob_neutral": 0.086
+    },
+    {
+      "text": "embarrassing loss #cricket",
+      "topic": "sports",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.847,
+      "prob_positive": 0.083,
+      "prob_negative": 0.847,
+      "prob_neutral": 0.07
+    },
+    {
+      "text": "could go either way #election @user_0087",
+      "topic": "politics",
+      "actual": "positive",
+      "predicted": "negative",
+      "correct": false,
+      "confidence": 0.477,
+      "prob_positive": 0.237,
+      "prob_negative": 0.477,
+      "prob_neutral": 0.287
+    },
+    {
+      "text": "commentary ongoing #football @user_1752",
+      "topic": "sports",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.783,
+      "prob_positive": 0.108,
+      "prob_negative": 0.109,
+      "prob_neutral": 0.783
+    },
+    {
+      "text": "game changer #AI @user_1208",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.908,
+      "prob_positive": 0.908,
+      "prob_negative": 0.042,
+      "prob_neutral": 0.049
+    },
+    {
+      "text": "started episode one #Netflix @user_1590",
+      "topic": "entertainment",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.809,
+      "prob_positive": 0.098,
+      "prob_negative": 0.093,
+      "prob_neutral": 0.809
+    },
+    {
+      "text": "reading about the release",
+      "topic": "tech",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.933,
+      "prob_positive": 0.039,
+      "prob_negative": 0.028,
+      "prob_neutral": 0.933
+    },
+    {
+      "text": "embarrassing loss #FIFA @user_0521",
+      "topic": "sports",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.827,
+      "prob_positive": 0.099,
+      "prob_negative": 0.827,
+      "prob_neutral": 0.074
+    },
+    {
+      "text": "ngl stopped working",
+      "topic": "tech",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.882,
+      "prob_positive": 0.056,
+      "prob_negative": 0.882,
+      "prob_neutral": 0.062
+    },
+    {
+      "text": "totally hooked",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.905,
+      "prob_positive": 0.905,
+      "prob_negative": 0.058,
+      "prob_neutral": 0.037
+    },
+    {
+      "text": "bullish trend via @user_2475",
+      "topic": "finance",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.909,
+      "prob_positive": 0.909,
+      "prob_negative": 0.048,
+      "prob_neutral": 0.043
+    },
+    {
+      "text": "strong earnings",
+      "topic": "finance",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.864,
+      "prob_positive": 0.864,
+      "prob_negative": 0.064,
+      "prob_neutral": 0.072
+    },
+    {
+      "text": "lol checked the standings #cricket",
+      "topic": "sports",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.771,
+      "prob_positive": 0.107,
+      "prob_negative": 0.122,
+      "prob_neutral": 0.771
+    },
+    {
+      "text": "wtf amazing features via @user_1451",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.838,
+      "prob_positive": 0.838,
+      "prob_negative": 0.079,
+      "prob_neutral": 0.083
+    },
+    {
+      "text": "idk downgraded again",
+      "topic": "finance",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.87,
+      "prob_positive": 0.066,
+      "prob_negative": 0.87,
+      "prob_neutral": 0.064
+    },
+    {
+      "text": "incredible match via @user_0036",
+      "topic": "sports",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.839,
+      "prob_positive": 0.839,
+      "prob_negative": 0.059,
+      "prob_neutral": 0.101
+    },
+    {
+      "text": "no tactics whatsoever #FIFA",
+      "topic": "sports",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.825,
+      "prob_positive": 0.1,
+      "prob_negative": 0.825,
+      "prob_neutral": 0.074
+    },
+    {
+      "text": "worst update ever #tech @user_0227",
+      "topic": "tech",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.858,
+      "prob_positive": 0.09,
+      "prob_negative": 0.858,
+      "prob_neutral": 0.052
+    },
+    {
+      "text": "tbh good governance via @user_0463",
+      "topic": "politics",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.852,
+      "prob_positive": 0.852,
+      "prob_negative": 0.077,
+      "prob_neutral": 0.071
+    },
+    {
+      "text": "worst update ever",
+      "topic": "tech",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.918,
+      "prob_positive": 0.055,
+      "prob_negative": 0.918,
+      "prob_neutral": 0.027
+    },
+    {
+      "text": "highly recommend via @user_2631",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.892,
+      "prob_positive": 0.892,
+      "prob_negative": 0.057,
+      "prob_neutral": 0.05
+    },
+    {
+      "text": "poor guidance",
+      "topic": "finance",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.895,
+      "prob_positive": 0.057,
+      "prob_negative": 0.895,
+      "prob_neutral": 0.049
+    },
+    {
+      "text": "disappointing sequel via @user_1112",
+      "topic": "entertainment",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.834,
+      "prob_positive": 0.09,
+      "prob_negative": 0.834,
+      "prob_neutral": 0.076
+    },
+    {
+      "text": "omg poor guidance #crypto @user_0169",
+      "topic": "finance",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.674,
+      "prob_positive": 0.169,
+      "prob_negative": 0.674,
+      "prob_neutral": 0.156
+    },
+    {
+      "text": "disappointing sequel",
+      "topic": "entertainment",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.834,
+      "prob_positive": 0.09,
+      "prob_negative": 0.834,
+      "prob_neutral": 0.076
+    },
+    {
+      "text": "solid quarter #investing",
+      "topic": "finance",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.841,
+      "prob_positive": 0.841,
+      "prob_negative": 0.085,
+      "prob_neutral": 0.075
+    },
+    {
+      "text": "smart investment",
+      "topic": "finance",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.895,
+      "prob_positive": 0.895,
+      "prob_negative": 0.062,
+      "prob_neutral": 0.043
+    },
+    {
+      "text": "lost everything",
+      "topic": "tech",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.876,
+      "prob_positive": 0.066,
+      "prob_negative": 0.876,
+      "prob_neutral": 0.058
+    },
+    {
+      "text": "mixed feelings about this",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "neutral",
+      "correct": false,
+      "confidence": 0.405,
+      "prob_positive": 0.307,
+      "prob_negative": 0.288,
+      "prob_neutral": 0.405
+    },
+    {
+      "text": "well handled cc @user_2597",
+      "topic": "politics",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.898,
+      "prob_positive": 0.898,
+      "prob_negative": 0.054,
+      "prob_neutral": 0.048
+    },
+    {
+      "text": "portfolio growing",
+      "topic": "politics",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.876,
+      "prob_positive": 0.876,
+      "prob_negative": 0.049,
+      "prob_neutral": 0.075
+    },
+    {
+      "text": "checked the ticker cc @user_0451",
+      "topic": "finance",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.947,
+      "prob_positive": 0.027,
+      "prob_negative": 0.026,
+      "prob_neutral": 0.947
+    },
+    {
+      "text": "amazing soundtrack cc @user_0735",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.923,
+      "prob_positive": 0.923,
+      "prob_negative": 0.041,
+      "prob_neutral": 0.037
+    },
+    {
+      "text": "wtf following the vote",
+      "topic": "finance",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.826,
+      "prob_positive": 0.088,
+      "prob_negative": 0.086,
+      "prob_neutral": 0.826
+    },
+    {
+      "text": "well handled cc @user_1904",
+      "topic": "politics",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.898,
+      "prob_positive": 0.898,
+      "prob_negative": 0.054,
+      "prob_neutral": 0.048
+    },
+    {
+      "text": "downloaded the beta",
+      "topic": "tech",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.902,
+      "prob_positive": 0.05,
+      "prob_negative": 0.048,
+      "prob_neutral": 0.902
+    },
+    {
+      "text": "smart investment via @user_2346",
+      "topic": "finance",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.895,
+      "prob_positive": 0.895,
+      "prob_negative": 0.062,
+      "prob_neutral": 0.043
+    },
+    {
+      "text": "love the new update #tech",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.806,
+      "prob_positive": 0.806,
+      "prob_negative": 0.094,
+      "prob_neutral": 0.1
+    },
+    {
+      "text": "profits up via @user_1635",
+      "topic": "finance",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.842,
+      "prob_positive": 0.842,
+      "prob_negative": 0.083,
+      "prob_neutral": 0.075
+    },
+    {
+      "text": "brilliant acting #movies",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.841,
+      "prob_positive": 0.841,
+      "prob_negative": 0.099,
+      "prob_neutral": 0.06
+    },
+    {
+      "text": "tbh reading analyst notes",
+      "topic": "finance",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.821,
+      "prob_positive": 0.091,
+      "prob_negative": 0.087,
+      "prob_neutral": 0.821
+    },
+    {
+      "text": "saw the highlights #football @user_0366",
+      "topic": "sports",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.879,
+      "prob_positive": 0.06,
+      "prob_negative": 0.061,
+      "prob_neutral": 0.879
+    },
+    {
+      "text": "right decision via @user_0695",
+      "topic": "finance",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.837,
+      "prob_positive": 0.837,
+      "prob_negative": 0.102,
+      "prob_neutral": 0.061
+    },
+    {
+      "text": "avoid this stock #market",
+      "topic": "finance",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.816,
+      "prob_positive": 0.101,
+      "prob_negative": 0.816,
+      "prob_neutral": 0.083
+    },
+    {
+      "text": "solid quarter #investing @user_1139",
+      "topic": "finance",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.841,
+      "prob_positive": 0.841,
+      "prob_negative": 0.085,
+      "prob_neutral": 0.075
+    },
+    {
+      "text": "wasted opportunity #democracy",
+      "topic": "politics",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.865,
+      "prob_positive": 0.073,
+      "prob_negative": 0.865,
+      "prob_neutral": 0.062
+    },
+    {
+      "text": "strong earnings",
+      "topic": "finance",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.864,
+      "prob_positive": 0.864,
+      "prob_negative": 0.064,
+      "prob_neutral": 0.072
+    },
+    {
+      "text": "finally progress #democracy @user_1638",
+      "topic": "politics",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.883,
+      "prob_positive": 0.883,
+      "prob_negative": 0.063,
+      "prob_neutral": 0.053
+    },
+    {
+      "text": "fwiw terrible investment #stocks @user_1663",
+      "topic": "finance",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.731,
+      "prob_positive": 0.17,
+      "prob_negative": 0.731,
+      "prob_neutral": 0.099
+    },
+    {
+      "text": "terrible UI cc @user_1191",
+      "topic": "tech",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.948,
+      "prob_positive": 0.026,
+      "prob_negative": 0.948,
+      "prob_neutral": 0.026
+    },
+    {
+      "text": "could go either way cc @user_2370",
+      "topic": "sports",
+      "actual": "positive",
+      "predicted": "negative",
+      "correct": false,
+      "confidence": 0.526,
+      "prob_positive": 0.228,
+      "prob_negative": 0.526,
+      "prob_neutral": 0.246
+    },
+    {
+      "text": "downgraded again via @user_1203",
+      "topic": "finance",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.881,
+      "prob_positive": 0.064,
+      "prob_negative": 0.881,
+      "prob_neutral": 0.055
+    },
+    {
+      "text": "totally hooked #series",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.853,
+      "prob_positive": 0.853,
+      "prob_negative": 0.082,
+      "prob_neutral": 0.065
+    },
+    {
+      "text": "hat trick legend #football @user_1382",
+      "topic": "sports",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.807,
+      "prob_positive": 0.807,
+      "prob_negative": 0.105,
+      "prob_neutral": 0.088
+    },
+    {
+      "text": "company bleeding money #finance",
+      "topic": "finance",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.863,
+      "prob_positive": 0.077,
+      "prob_negative": 0.863,
+      "prob_neutral": 0.06
+    },
+    {
+      "text": "huge improvement via @user_0501",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.848,
+      "prob_positive": 0.848,
+      "prob_negative": 0.096,
+      "prob_neutral": 0.057
+    },
+    {
+      "text": "boring throughout",
+      "topic": "tech",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.878,
+      "prob_positive": 0.066,
+      "prob_negative": 0.878,
+      "prob_neutral": 0.056
+    },
+    {
+      "text": "wtf depends on your perspective #election",
+      "topic": "politics",
+      "actual": "positive",
+      "predicted": "neutral",
+      "correct": false,
+      "confidence": 0.404,
+      "prob_positive": 0.365,
+      "prob_negative": 0.231,
+      "prob_neutral": 0.404
+    },
+    {
+      "text": "using it daily #coding @user_1970",
+      "topic": "tech",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.703,
+      "prob_positive": 0.161,
+      "prob_negative": 0.136,
+      "prob_neutral": 0.703
+    },
+    {
+      "text": "shocking result",
+      "topic": "tech",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.862,
+      "prob_positive": 0.074,
+      "prob_negative": 0.862,
+      "prob_neutral": 0.063
+    },
+    {
+      "text": "love the new update via @user_0511",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.867,
+      "prob_positive": 0.867,
+      "prob_negative": 0.068,
+      "prob_neutral": 0.065
+    },
+    {
+      "text": "commentary ongoing",
+      "topic": "sports",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.87,
+      "prob_positive": 0.067,
+      "prob_negative": 0.063,
+      "prob_neutral": 0.87
+    },
+    {
+      "text": "right decision",
+      "topic": "politics",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.837,
+      "prob_positive": 0.837,
+      "prob_negative": 0.102,
+      "prob_neutral": 0.061
+    },
+    {
+      "text": "walked out halfway cc @user_0818",
+      "topic": "entertainment",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.882,
+      "prob_positive": 0.051,
+      "prob_negative": 0.882,
+      "prob_neutral": 0.067
+    },
+    {
+      "text": "impressive release",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.866,
+      "prob_positive": 0.866,
+      "prob_negative": 0.061,
+      "prob_neutral": 0.073
+    },
+    {
+      "text": "omg good governance #movies @user_0564",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.823,
+      "prob_positive": 0.823,
+      "prob_negative": 0.079,
+      "prob_neutral": 0.098
+    },
+    {
+      "text": "game changer",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.908,
+      "prob_positive": 0.908,
+      "prob_negative": 0.042,
+      "prob_neutral": 0.049
+    },
+    {
+      "text": "nothing changes via @user_0992",
+      "topic": "sports",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.91,
+      "prob_positive": 0.048,
+      "prob_negative": 0.91,
+      "prob_neutral": 0.042
+    },
+    {
+      "text": "huge losses #crypto",
+      "topic": "finance",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.742,
+      "prob_positive": 0.158,
+      "prob_negative": 0.742,
+      "prob_neutral": 0.1
+    },
+    {
+      "text": "commentary ongoing via @user_0907",
+      "topic": "sports",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.87,
+      "prob_positive": 0.067,
+      "prob_negative": 0.063,
+      "prob_neutral": 0.87
+    },
+    {
+      "text": "shocking result #FIFA @user_0512",
+      "topic": "sports",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.815,
+      "prob_positive": 0.106,
+      "prob_negative": 0.815,
+      "prob_neutral": 0.079
+    },
+    {
+      "text": "sell everything #investing @user_1486",
+      "topic": "finance",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.851,
+      "prob_positive": 0.082,
+      "prob_negative": 0.851,
+      "prob_neutral": 0.067
+    },
+    {
+      "text": "proud of the team #sports @user_2093",
+      "topic": "sports",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.787,
+      "prob_positive": 0.787,
+      "prob_negative": 0.085,
+      "prob_neutral": 0.128
+    },
+    {
+      "text": "boring throughout cc @user_0787",
+      "topic": "entertainment",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.878,
+      "prob_positive": 0.066,
+      "prob_negative": 0.878,
+      "prob_neutral": 0.056
+    },
+    {
+      "text": "literally we'll see how this plays out via @user_0369",
+      "topic": "politics",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.385,
+      "prob_positive": 0.385,
+      "prob_negative": 0.305,
+      "prob_neutral": 0.31
+    },
+    {
+      "text": "data loss nightmare cc @user_1077",
+      "topic": "tech",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.887,
+      "prob_positive": 0.06,
+      "prob_negative": 0.887,
+      "prob_neutral": 0.052
+    },
+    {
+      "text": "could go either way via @user_1680",
+      "topic": "politics",
+      "actual": "neutral",
+      "predicted": "negative",
+      "correct": false,
+      "confidence": 0.526,
+      "prob_positive": 0.228,
+      "prob_negative": 0.526,
+      "prob_neutral": 0.246
+    },
+    {
+      "text": "watching the keynote cc @user_2106",
+      "topic": "tech",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.914,
+      "prob_positive": 0.043,
+      "prob_negative": 0.043,
+      "prob_neutral": 0.914
+    },
+    {
+      "text": "positive change via @user_1546",
+      "topic": "politics",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.875,
+      "prob_positive": 0.875,
+      "prob_negative": 0.053,
+      "prob_neutral": 0.072
+    },
+    {
+      "text": "missed badly via @user_0898",
+      "topic": "finance",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.87,
+      "prob_positive": 0.07,
+      "prob_negative": 0.87,
+      "prob_neutral": 0.06
+    },
+    {
+      "text": "checked the cast #Hollywood",
+      "topic": "entertainment",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.915,
+      "prob_positive": 0.04,
+      "prob_negative": 0.045,
+      "prob_neutral": 0.915
+    },
+    {
+      "text": "actually poor guidance #crypto",
+      "topic": "finance",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.702,
+      "prob_positive": 0.163,
+      "prob_negative": 0.702,
+      "prob_neutral": 0.135
+    },
+    {
+      "text": "sell everything #stocks @user_2555",
+      "topic": "finance",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.874,
+      "prob_positive": 0.072,
+      "prob_negative": 0.874,
+      "prob_neutral": 0.054
+    },
+    {
+      "text": "following the scores",
+      "topic": "sports",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.949,
+      "prob_positive": 0.026,
+      "prob_negative": 0.025,
+      "prob_neutral": 0.949
+    },
+    {
+      "text": "reviewed the portfolio via @user_0045",
+      "topic": "finance",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.898,
+      "prob_positive": 0.061,
+      "prob_negative": 0.041,
+      "prob_neutral": 0.898
+    },
+    {
+      "text": "disappointing sequel via @user_1851",
+      "topic": "entertainment",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.834,
+      "prob_positive": 0.09,
+      "prob_negative": 0.834,
+      "prob_neutral": 0.076
+    },
+    {
+      "text": "data loss nightmare #election",
+      "topic": "politics",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.861,
+      "prob_positive": 0.071,
+      "prob_negative": 0.861,
+      "prob_neutral": 0.069
+    },
+    {
+      "text": "totally hooked #crypto",
+      "topic": "finance",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.843,
+      "prob_positive": 0.843,
+      "prob_negative": 0.082,
+      "prob_neutral": 0.075
+    },
+    {
+      "text": "embarrassing policy #democracy",
+      "topic": "politics",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.739,
+      "prob_positive": 0.153,
+      "prob_negative": 0.739,
+      "prob_neutral": 0.108
+    },
+    {
+      "text": "mixed feelings about this #Netflix @user_2604",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "neutral",
+      "correct": false,
+      "confidence": 0.411,
+      "prob_positive": 0.307,
+      "prob_negative": 0.282,
+      "prob_neutral": 0.411
+    },
+    {
+      "text": "brilliant goal via @user_2670",
+      "topic": "sports",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.925,
+      "prob_positive": 0.925,
+      "prob_negative": 0.038,
+      "prob_neutral": 0.037
+    },
+    {
+      "text": "finally works perfectly via @user_0412",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.901,
+      "prob_positive": 0.901,
+      "prob_negative": 0.052,
+      "prob_neutral": 0.047
+    },
+    {
+      "text": "waste of time #investing @user_1546",
+      "topic": "finance",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.865,
+      "prob_positive": 0.071,
+      "prob_negative": 0.865,
+      "prob_neutral": 0.064
+    },
+    {
+      "text": "outperformed expectations",
+      "topic": "finance",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.864,
+      "prob_positive": 0.864,
+      "prob_negative": 0.072,
+      "prob_neutral": 0.064
+    },
+    {
+      "text": "game changer via @user_2191",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.908,
+      "prob_positive": 0.908,
+      "prob_negative": 0.042,
+      "prob_neutral": 0.049
+    },
+    {
+      "text": "total incompetence #election",
+      "topic": "politics",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.888,
+      "prob_positive": 0.056,
+      "prob_negative": 0.888,
+      "prob_neutral": 0.057
+    },
+    {
+      "text": "so fast now",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.888,
+      "prob_positive": 0.888,
+      "prob_negative": 0.069,
+      "prob_neutral": 0.043
+    },
+    {
+      "text": "good governance cc @user_2382",
+      "topic": "politics",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.885,
+      "prob_positive": 0.885,
+      "prob_negative": 0.06,
+      "prob_neutral": 0.055
+    },
+    {
+      "text": "solid performance cc @user_1590",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.934,
+      "prob_positive": 0.934,
+      "prob_negative": 0.04,
+      "prob_neutral": 0.026
+    },
+    {
+      "text": "love the new update #coding",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.845,
+      "prob_positive": 0.845,
+      "prob_negative": 0.087,
+      "prob_neutral": 0.068
+    },
+    {
+      "text": "cinematic masterpiece #Netflix",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.819,
+      "prob_positive": 0.819,
+      "prob_negative": 0.093,
+      "prob_neutral": 0.088
+    },
+    {
+      "text": "lost everything via @user_2665",
+      "topic": "finance",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.876,
+      "prob_positive": 0.066,
+      "prob_negative": 0.876,
+      "prob_neutral": 0.058
+    },
+    {
+      "text": "best series ever cc @user_2525",
+      "topic": "finance",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.894,
+      "prob_positive": 0.894,
+      "prob_negative": 0.066,
+      "prob_neutral": 0.04
+    },
+    {
+      "text": "testing on my device via @user_2516",
+      "topic": "tech",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.808,
+      "prob_positive": 0.1,
+      "prob_negative": 0.092,
+      "prob_neutral": 0.808
+    },
+    {
+      "text": "game changer",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.908,
+      "prob_positive": 0.908,
+      "prob_negative": 0.042,
+      "prob_neutral": 0.049
+    },
+    {
+      "text": "brilliant goal via @user_1005",
+      "topic": "sports",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.925,
+      "prob_positive": 0.925,
+      "prob_negative": 0.038,
+      "prob_neutral": 0.037
+    },
+    {
+      "text": "totally worth it",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.893,
+      "prob_positive": 0.893,
+      "prob_negative": 0.065,
+      "prob_neutral": 0.042
+    },
+    {
+      "text": "testing on my device #startup",
+      "topic": "tech",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.745,
+      "prob_positive": 0.143,
+      "prob_negative": 0.112,
+      "prob_neutral": 0.745
+    },
+    {
+      "text": "smh must watch cc @user_0960",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.883,
+      "prob_positive": 0.883,
+      "prob_negative": 0.055,
+      "prob_neutral": 0.061
+    },
+    {
+      "text": "team announced lineup via @user_0065",
+      "topic": "sports",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.885,
+      "prob_positive": 0.068,
+      "prob_negative": 0.047,
+      "prob_neutral": 0.885
+    },
+    {
+      "text": "oscar worthy #Bollywood @user_0713",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.803,
+      "prob_positive": 0.803,
+      "prob_negative": 0.101,
+      "prob_neutral": 0.096
+    },
+    {
+      "text": "outperformed expectations #stocks",
+      "topic": "finance",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.807,
+      "prob_positive": 0.807,
+      "prob_negative": 0.103,
+      "prob_neutral": 0.09
+    },
+    {
+      "text": "best app ever #tech",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.811,
+      "prob_positive": 0.811,
+      "prob_negative": 0.101,
+      "prob_neutral": 0.088
+    },
+    {
+      "text": "keeps crashing via @user_0262",
+      "topic": "tech",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.884,
+      "prob_positive": 0.061,
+      "prob_negative": 0.884,
+      "prob_neutral": 0.055
+    },
+    {
+      "text": "walked out halfway cc @user_0410",
+      "topic": "sports",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.882,
+      "prob_positive": 0.051,
+      "prob_negative": 0.882,
+      "prob_neutral": 0.067
+    },
+    {
+      "text": "idk oscar worthy via @user_0745",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.782,
+      "prob_positive": 0.782,
+      "prob_negative": 0.122,
+      "prob_neutral": 0.096
+    },
+    {
+      "text": "installed the patch #startup @user_2599",
+      "topic": "tech",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.785,
+      "prob_positive": 0.12,
+      "prob_negative": 0.095,
+      "prob_neutral": 0.785
+    },
+    {
+      "text": "good governance #election",
+      "topic": "politics",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.803,
+      "prob_positive": 0.803,
+      "prob_negative": 0.097,
+      "prob_neutral": 0.1
+    },
+    {
+      "text": "waste of time",
+      "topic": "entertainment",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.902,
+      "prob_positive": 0.049,
+      "prob_negative": 0.902,
+      "prob_neutral": 0.049
+    },
+    {
+      "text": "on my watchlist #Hollywood @user_1754",
+      "topic": "entertainment",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.713,
+      "prob_positive": 0.14,
+      "prob_negative": 0.147,
+      "prob_neutral": 0.713
+    },
+    {
+      "text": "poor guidance",
+      "topic": "finance",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.895,
+      "prob_positive": 0.057,
+      "prob_negative": 0.895,
+      "prob_neutral": 0.049
+    },
+    {
+      "text": "profits up",
+      "topic": "finance",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.842,
+      "prob_positive": 0.842,
+      "prob_negative": 0.083,
+      "prob_neutral": 0.075
+    },
+    {
+      "text": "attended the town hall #policy",
+      "topic": "politics",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.89,
+      "prob_positive": 0.062,
+      "prob_negative": 0.048,
+      "prob_neutral": 0.89
+    },
+    {
+      "text": "imo unstoppable season via @user_2085",
+      "topic": "sports",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.856,
+      "prob_positive": 0.856,
+      "prob_negative": 0.097,
+      "prob_neutral": 0.048
+    },
+    {
+      "text": "noted the price via @user_1605",
+      "topic": "finance",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.777,
+      "prob_positive": 0.111,
+      "prob_negative": 0.111,
+      "prob_neutral": 0.777
+    },
+    {
+      "text": "finally action",
+      "topic": "politics",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.923,
+      "prob_positive": 0.923,
+      "prob_negative": 0.04,
+      "prob_neutral": 0.037
+    },
+    {
+      "text": "wtf so fast now",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.837,
+      "prob_positive": 0.837,
+      "prob_negative": 0.093,
+      "prob_neutral": 0.07
+    },
+    {
+      "text": "reading analyst notes via @user_1248",
+      "topic": "finance",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.88,
+      "prob_positive": 0.06,
+      "prob_negative": 0.06,
+      "prob_neutral": 0.88
+    },
+    {
+      "text": "must watch #series",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.87,
+      "prob_positive": 0.87,
+      "prob_negative": 0.064,
+      "prob_neutral": 0.065
+    },
+    {
+      "text": "unstoppable season",
+      "topic": "sports",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.891,
+      "prob_positive": 0.891,
+      "prob_negative": 0.065,
+      "prob_neutral": 0.044
+    },
+    {
+      "text": "watching the trailer #Hollywood @user_1649",
+      "topic": "entertainment",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.882,
+      "prob_positive": 0.056,
+      "prob_negative": 0.063,
+      "prob_neutral": 0.882
+    },
+    {
+      "text": "loved every scene #Bollywood",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.881,
+      "prob_positive": 0.881,
+      "prob_negative": 0.06,
+      "prob_neutral": 0.059
+    },
+    {
+      "text": "great returns via @user_2949",
+      "topic": "finance",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.907,
+      "prob_positive": 0.907,
+      "prob_negative": 0.048,
+      "prob_neutral": 0.044
+    },
+    {
+      "text": "profits up cc @user_1019",
+      "topic": "finance",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.842,
+      "prob_positive": 0.842,
+      "prob_negative": 0.083,
+      "prob_neutral": 0.075
+    },
+    {
+      "text": "impressive release cc @user_0120",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.866,
+      "prob_positive": 0.866,
+      "prob_negative": 0.061,
+      "prob_neutral": 0.073
+    },
+    {
+      "text": "cinematic masterpiece #Hollywood",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.797,
+      "prob_positive": 0.797,
+      "prob_negative": 0.104,
+      "prob_neutral": 0.099
+    },
+    {
+      "text": "brilliant acting",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.919,
+      "prob_positive": 0.919,
+      "prob_negative": 0.051,
+      "prob_neutral": 0.03
+    },
+    {
+      "text": "totally outplayed",
+      "topic": "sports",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.84,
+      "prob_positive": 0.109,
+      "prob_negative": 0.84,
+      "prob_neutral": 0.051
+    },
+    {
+      "text": "finally action via @user_1574",
+      "topic": "politics",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.923,
+      "prob_positive": 0.923,
+      "prob_negative": 0.04,
+      "prob_neutral": 0.037
+    },
+    {
+      "text": "highly recommend #series",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.857,
+      "prob_positive": 0.857,
+      "prob_negative": 0.072,
+      "prob_neutral": 0.071
+    },
+    {
+      "text": "inspiring speech #election @user_1785",
+      "topic": "politics",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.796,
+      "prob_positive": 0.796,
+      "prob_negative": 0.081,
+      "prob_neutral": 0.123
+    },
+    {
+      "text": "cinematic masterpiece cc @user_1991",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.89,
+      "prob_positive": 0.89,
+      "prob_negative": 0.058,
+      "prob_neutral": 0.052
+    },
+    {
+      "text": "following the transfer news",
+      "topic": "sports",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.893,
+      "prob_positive": 0.055,
+      "prob_negative": 0.052,
+      "prob_neutral": 0.893
+    },
+    {
+      "text": "portfolio growing cc @user_1038",
+      "topic": "finance",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.876,
+      "prob_positive": 0.876,
+      "prob_negative": 0.049,
+      "prob_neutral": 0.075
+    },
+    {
+      "text": "proud of the team",
+      "topic": "sports",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.858,
+      "prob_positive": 0.858,
+      "prob_negative": 0.06,
+      "prob_neutral": 0.082
+    },
+    {
+      "text": "depends on your perspective cc @user_0188",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "neutral",
+      "correct": false,
+      "confidence": 0.406,
+      "prob_positive": 0.354,
+      "prob_negative": 0.24,
+      "prob_neutral": 0.406
+    },
+    {
+      "text": "no tactics whatsoever cc @user_0549",
+      "topic": "sports",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.892,
+      "prob_positive": 0.058,
+      "prob_negative": 0.892,
+      "prob_neutral": 0.05
+    },
+    {
+      "text": "we'll see how this plays out #investing @user_2789",
+      "topic": "finance",
+      "actual": "negative",
+      "predicted": "positive",
+      "correct": false,
+      "confidence": 0.382,
+      "prob_positive": 0.382,
+      "prob_negative": 0.298,
+      "prob_neutral": 0.319
+    },
+    {
+      "text": "so many bugs #startup @user_1934",
+      "topic": "tech",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.763,
+      "prob_positive": 0.132,
+      "prob_negative": 0.763,
+      "prob_neutral": 0.105
+    },
+    {
+      "text": "strong earnings",
+      "topic": "finance",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.864,
+      "prob_positive": 0.864,
+      "prob_negative": 0.064,
+      "prob_neutral": 0.072
+    },
+    {
+      "text": "read the policy document #politics",
+      "topic": "politics",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.837,
+      "prob_positive": 0.081,
+      "prob_negative": 0.082,
+      "prob_neutral": 0.837
+    },
+    {
+      "text": "good governance #government @user_0085",
+      "topic": "politics",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.799,
+      "prob_positive": 0.799,
+      "prob_negative": 0.108,
+      "prob_neutral": 0.093
+    },
+    {
+      "text": "using it daily",
+      "topic": "tech",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.781,
+      "prob_positive": 0.112,
+      "prob_negative": 0.106,
+      "prob_neutral": 0.781
+    },
+    {
+      "text": "impressive release cc @user_2346",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.866,
+      "prob_positive": 0.866,
+      "prob_negative": 0.061,
+      "prob_neutral": 0.073
+    },
+    {
+      "text": "unusable now #software",
+      "topic": "tech",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.848,
+      "prob_positive": 0.1,
+      "prob_negative": 0.848,
+      "prob_neutral": 0.052
+    },
+    {
+      "text": "well handled #AI",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.898,
+      "prob_positive": 0.898,
+      "prob_negative": 0.054,
+      "prob_neutral": 0.048
+    },
+    {
+      "text": "best app ever cc @user_1337",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.878,
+      "prob_positive": 0.878,
+      "prob_negative": 0.067,
+      "prob_neutral": 0.055
+    },
+    {
+      "text": "should be fired #cricket",
+      "topic": "sports",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.746,
+      "prob_positive": 0.14,
+      "prob_negative": 0.746,
+      "prob_neutral": 0.114
+    },
+    {
+      "text": "must watch #series",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.87,
+      "prob_positive": 0.87,
+      "prob_negative": 0.064,
+      "prob_neutral": 0.065
+    },
+    {
+      "text": "reading the report #democracy @user_1418",
+      "topic": "politics",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.933,
+      "prob_positive": 0.031,
+      "prob_negative": 0.036,
+      "prob_neutral": 0.933
+    },
+    {
+      "text": "watching the trailer cc @user_1617",
+      "topic": "sports",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.896,
+      "prob_positive": 0.052,
+      "prob_negative": 0.052,
+      "prob_neutral": 0.896
+    },
+    {
+      "text": "smh trying the new feature",
+      "topic": "tech",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.852,
+      "prob_positive": 0.085,
+      "prob_negative": 0.062,
+      "prob_neutral": 0.852
+    },
+    {
+      "text": "boring throughout #Hollywood",
+      "topic": "entertainment",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.852,
+      "prob_positive": 0.072,
+      "prob_negative": 0.852,
+      "prob_neutral": 0.076
+    },
+    {
+      "text": "right decision #democracy",
+      "topic": "politics",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.744,
+      "prob_positive": 0.744,
+      "prob_negative": 0.162,
+      "prob_neutral": 0.094
+    },
+    {
+      "text": "broken again via @user_1645",
+      "topic": "tech",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.913,
+      "prob_positive": 0.046,
+      "prob_negative": 0.913,
+      "prob_neutral": 0.041
+    },
+    {
+      "text": "avoid this stock",
+      "topic": "finance",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.854,
+      "prob_positive": 0.078,
+      "prob_negative": 0.854,
+      "prob_neutral": 0.067
+    },
+    {
+      "text": "we'll see how this plays out #Hollywood @user_1520",
+      "topic": "entertainment",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.359,
+      "prob_positive": 0.343,
+      "prob_negative": 0.298,
+      "prob_neutral": 0.359
+    },
+    {
+      "text": "checked the cast cc @user_1811",
+      "topic": "entertainment",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.929,
+      "prob_positive": 0.035,
+      "prob_negative": 0.035,
+      "prob_neutral": 0.929
+    },
+    {
+      "text": "market crash incoming cc @user_1987",
+      "topic": "entertainment",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.874,
+      "prob_positive": 0.068,
+      "prob_negative": 0.874,
+      "prob_neutral": 0.059
+    },
+    {
+      "text": "disgraceful decision #democracy @user_0389",
+      "topic": "politics",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.835,
+      "prob_positive": 0.1,
+      "prob_negative": 0.835,
+      "prob_neutral": 0.065
+    },
+    {
+      "text": "unacceptable cc @user_0909",
+      "topic": "politics",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.892,
+      "prob_positive": 0.059,
+      "prob_negative": 0.892,
+      "prob_neutral": 0.049
+    },
+    {
+      "text": "time will tell #sports",
+      "topic": "sports",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.53,
+      "prob_positive": 0.238,
+      "prob_negative": 0.232,
+      "prob_neutral": 0.53
+    },
+    {
+      "text": "terrible plot cc @user_1212",
+      "topic": "entertainment",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.901,
+      "prob_positive": 0.052,
+      "prob_negative": 0.901,
+      "prob_neutral": 0.047
+    },
+    {
+      "text": "omg unacceptable #NBA",
+      "topic": "sports",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.703,
+      "prob_positive": 0.155,
+      "prob_negative": 0.703,
+      "prob_neutral": 0.142
+    },
+    {
+      "text": "zero character development #Netflix",
+      "topic": "entertainment",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.852,
+      "prob_positive": 0.079,
+      "prob_negative": 0.852,
+      "prob_neutral": 0.069
+    },
+    {
+      "text": "impressive release #AI @user_2020",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.866,
+      "prob_positive": 0.866,
+      "prob_negative": 0.061,
+      "prob_neutral": 0.073
+    },
+    {
+      "text": "ngl emotional rollercoaster",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.786,
+      "prob_positive": 0.786,
+      "prob_negative": 0.113,
+      "prob_neutral": 0.101
+    },
+    {
+      "text": "fwiw no accountability cc @user_1841",
+      "topic": "politics",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.72,
+      "prob_positive": 0.142,
+      "prob_negative": 0.72,
+      "prob_neutral": 0.138
+    },
+    {
+      "text": "broken promises again cc @user_1491",
+      "topic": "politics",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.911,
+      "prob_positive": 0.048,
+      "prob_negative": 0.911,
+      "prob_neutral": 0.041
+    },
+    {
+      "text": "terrible investment #investing @user_2888",
+      "topic": "finance",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.77,
+      "prob_positive": 0.153,
+      "prob_negative": 0.77,
+      "prob_neutral": 0.077
+    },
+    {
+      "text": "imo checked the standings cc @user_2906",
+      "topic": "sports",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.856,
+      "prob_positive": 0.071,
+      "prob_negative": 0.073,
+      "prob_neutral": 0.856
+    },
+    {
+      "text": "lol right decision #politics",
+      "topic": "politics",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.711,
+      "prob_positive": 0.711,
+      "prob_negative": 0.196,
+      "prob_neutral": 0.093
+    },
+    {
+      "text": "what a comeback via @user_1926",
+      "topic": "sports",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.842,
+      "prob_positive": 0.842,
+      "prob_negative": 0.084,
+      "prob_neutral": 0.074
+    },
+    {
+      "text": "highly recommend #Hollywood @user_1589",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.787,
+      "prob_positive": 0.787,
+      "prob_negative": 0.11,
+      "prob_neutral": 0.103
+    },
+    {
+      "text": "strong leadership cc @user_1300",
+      "topic": "politics",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.886,
+      "prob_positive": 0.886,
+      "prob_negative": 0.061,
+      "prob_neutral": 0.053
+    },
+    {
+      "text": "watching the press conference via @user_0193",
+      "topic": "politics",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.933,
+      "prob_positive": 0.034,
+      "prob_negative": 0.033,
+      "prob_neutral": 0.933
+    },
+    {
+      "text": "interesting take cc @user_0542",
+      "topic": "tech",
+      "actual": "neutral",
+      "predicted": "positive",
+      "correct": false,
+      "confidence": 0.482,
+      "prob_positive": 0.482,
+      "prob_negative": 0.229,
+      "prob_neutral": 0.289
+    },
+    {
+      "text": "outperformed expectations #FIFA @user_0032",
+      "topic": "sports",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.836,
+      "prob_positive": 0.836,
+      "prob_negative": 0.095,
+      "prob_neutral": 0.069
+    },
+    {
+      "text": "total incompetence via @user_0375",
+      "topic": "politics",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.924,
+      "prob_positive": 0.04,
+      "prob_negative": 0.924,
+      "prob_neutral": 0.036
+    },
+    {
+      "text": "positive change via @user_0126",
+      "topic": "politics",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.875,
+      "prob_positive": 0.875,
+      "prob_negative": 0.053,
+      "prob_neutral": 0.072
+    },
+    {
+      "text": "lost everything",
+      "topic": "finance",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.876,
+      "prob_positive": 0.066,
+      "prob_negative": 0.876,
+      "prob_neutral": 0.058
+    },
+    {
+      "text": "lol worst season ever #sports @user_1426",
+      "topic": "sports",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.876,
+      "prob_positive": 0.073,
+      "prob_negative": 0.876,
+      "prob_neutral": 0.05
+    },
+    {
+      "text": "stadium looks full",
+      "topic": "sports",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.842,
+      "prob_positive": 0.082,
+      "prob_negative": 0.076,
+      "prob_neutral": 0.842
+    },
+    {
+      "text": "disgraceful decision",
+      "topic": "politics",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.912,
+      "prob_positive": 0.053,
+      "prob_negative": 0.912,
+      "prob_neutral": 0.035
+    },
+    {
+      "text": "deserved win",
+      "topic": "sports",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.874,
+      "prob_positive": 0.874,
+      "prob_negative": 0.066,
+      "prob_neutral": 0.06
+    },
+    {
+      "text": "market crash incoming via @user_2813",
+      "topic": "finance",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.874,
+      "prob_positive": 0.068,
+      "prob_negative": 0.874,
+      "prob_neutral": 0.059
+    },
+    {
+      "text": "could go either way cc @user_0862",
+      "topic": "sports",
+      "actual": "positive",
+      "predicted": "negative",
+      "correct": false,
+      "confidence": 0.526,
+      "prob_positive": 0.228,
+      "prob_negative": 0.526,
+      "prob_neutral": 0.246
+    },
+    {
+      "text": "must watch cc @user_1755",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.928,
+      "prob_positive": 0.928,
+      "prob_negative": 0.038,
+      "prob_neutral": 0.034
+    },
+    {
+      "text": "smh heard mixed reviews cc @user_0669",
+      "topic": "entertainment",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.913,
+      "prob_positive": 0.043,
+      "prob_negative": 0.044,
+      "prob_neutral": 0.913
+    },
+    {
+      "text": "saw it trending via @user_1084",
+      "topic": "entertainment",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.912,
+      "prob_positive": 0.045,
+      "prob_negative": 0.043,
+      "prob_neutral": 0.912
+    },
+    {
+      "text": "checked the ticker #market @user_0950",
+      "topic": "finance",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.877,
+      "prob_positive": 0.066,
+      "prob_negative": 0.057,
+      "prob_neutral": 0.877
+    },
+    {
+      "text": "poor guidance cc @user_1119",
+      "topic": "finance",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.895,
+      "prob_positive": 0.057,
+      "prob_negative": 0.895,
+      "prob_neutral": 0.049
+    },
+    {
+      "text": "watching the index #finance @user_1178",
+      "topic": "finance",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.795,
+      "prob_positive": 0.11,
+      "prob_negative": 0.095,
+      "prob_neutral": 0.795
+    },
+    {
+      "text": "lol trying the new feature via @user_1926",
+      "topic": "tech",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.825,
+      "prob_positive": 0.093,
+      "prob_negative": 0.082,
+      "prob_neutral": 0.825
+    },
+    {
+      "text": "checked the standings #sports",
+      "topic": "sports",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.862,
+      "prob_positive": 0.067,
+      "prob_negative": 0.071,
+      "prob_neutral": 0.862
+    },
+    {
+      "text": "no tactics whatsoever",
+      "topic": "sports",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.892,
+      "prob_positive": 0.058,
+      "prob_negative": 0.892,
+      "prob_neutral": 0.05
+    },
+    {
+      "text": "loved every scene #movies @user_2968",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.873,
+      "prob_positive": 0.873,
+      "prob_negative": 0.066,
+      "prob_neutral": 0.06
+    },
+    {
+      "text": "watching the trailer cc @user_0742",
+      "topic": "politics",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.896,
+      "prob_positive": 0.052,
+      "prob_negative": 0.052,
+      "prob_neutral": 0.896
+    },
+    {
+      "text": "love the new update cc @user_2732",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.867,
+      "prob_positive": 0.867,
+      "prob_negative": 0.068,
+      "prob_neutral": 0.065
+    },
+    {
+      "text": "huge improvement #tech @user_0828",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.797,
+      "prob_positive": 0.797,
+      "prob_negative": 0.115,
+      "prob_neutral": 0.087
+    },
+    {
+      "text": "fwiw ignored the public",
+      "topic": "politics",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.896,
+      "prob_positive": 0.052,
+      "prob_negative": 0.896,
+      "prob_neutral": 0.052
+    },
+    {
+      "text": "following the scores",
+      "topic": "sports",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.949,
+      "prob_positive": 0.026,
+      "prob_negative": 0.025,
+      "prob_neutral": 0.949
+    },
+    {
+      "text": "so many bugs #AI",
+      "topic": "tech",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.863,
+      "prob_positive": 0.074,
+      "prob_negative": 0.863,
+      "prob_neutral": 0.063
+    },
+    {
+      "text": "not sure what to think cc @user_2950",
+      "topic": "entertainment",
+      "actual": "neutral",
+      "predicted": "negative",
+      "correct": false,
+      "confidence": 0.45,
+      "prob_positive": 0.262,
+      "prob_negative": 0.45,
+      "prob_neutral": 0.289
+    },
+    {
+      "text": "huge improvement #AI @user_1104",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.848,
+      "prob_positive": 0.848,
+      "prob_negative": 0.096,
+      "prob_neutral": 0.057
+    },
+    {
+      "text": "heard about the show cc @user_0593",
+      "topic": "entertainment",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.925,
+      "prob_positive": 0.036,
+      "prob_negative": 0.039,
+      "prob_neutral": 0.925
+    },
+    {
+      "text": "hard to say #startup",
+      "topic": "tech",
+      "actual": "negative",
+      "predicted": "neutral",
+      "correct": false,
+      "confidence": 0.441,
+      "prob_positive": 0.324,
+      "prob_negative": 0.235,
+      "prob_neutral": 0.441
+    },
+    {
+      "text": "smh inspiring speech",
+      "topic": "politics",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.841,
+      "prob_positive": 0.841,
+      "prob_negative": 0.061,
+      "prob_neutral": 0.098
+    },
+    {
+      "text": "strong leadership via @user_2468",
+      "topic": "politics",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.886,
+      "prob_positive": 0.886,
+      "prob_negative": 0.061,
+      "prob_neutral": 0.053
+    },
+    {
+      "text": "highly recommend via @user_0003",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.892,
+      "prob_positive": 0.892,
+      "prob_negative": 0.057,
+      "prob_neutral": 0.05
+    },
+    {
+      "text": "disgraceful decision cc @user_1627",
+      "topic": "politics",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.912,
+      "prob_positive": 0.053,
+      "prob_negative": 0.912,
+      "prob_neutral": 0.035
+    },
+    {
+      "text": "ngl halfway through #Bollywood @user_2105",
+      "topic": "entertainment",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.802,
+      "prob_positive": 0.089,
+      "prob_negative": 0.109,
+      "prob_neutral": 0.802
+    },
+    {
+      "text": "no accountability #policy @user_2921",
+      "topic": "politics",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.706,
+      "prob_positive": 0.172,
+      "prob_negative": 0.706,
+      "prob_neutral": 0.122
+    },
+    {
+      "text": "stadium looks full cc @user_1763",
+      "topic": "sports",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.842,
+      "prob_positive": 0.082,
+      "prob_negative": 0.076,
+      "prob_neutral": 0.842
+    },
+    {
+      "text": "finally progress via @user_0184",
+      "topic": "politics",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.921,
+      "prob_positive": 0.921,
+      "prob_negative": 0.041,
+      "prob_neutral": 0.038
+    },
+    {
+      "text": "using it daily cc @user_2961",
+      "topic": "tech",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.781,
+      "prob_positive": 0.112,
+      "prob_negative": 0.106,
+      "prob_neutral": 0.781
+    },
+    {
+      "text": "amazing features via @user_2050",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.89,
+      "prob_positive": 0.89,
+      "prob_negative": 0.057,
+      "prob_neutral": 0.052
+    },
+    {
+      "text": "history made today via @user_0997",
+      "topic": "sports",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.904,
+      "prob_positive": 0.904,
+      "prob_negative": 0.05,
+      "prob_neutral": 0.046
+    },
+    {
+      "text": "proud of the team via @user_1102",
+      "topic": "sports",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.858,
+      "prob_positive": 0.858,
+      "prob_negative": 0.06,
+      "prob_neutral": 0.082
+    },
+    {
+      "text": "amazing features #startup @user_2328",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.827,
+      "prob_positive": 0.827,
+      "prob_negative": 0.086,
+      "prob_neutral": 0.087
+    },
+    {
+      "text": "brilliant goal cc @user_0003",
+      "topic": "sports",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.925,
+      "prob_positive": 0.925,
+      "prob_negative": 0.038,
+      "prob_neutral": 0.037
+    },
+    {
+      "text": "amazing soundtrack",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.923,
+      "prob_positive": 0.923,
+      "prob_negative": 0.041,
+      "prob_neutral": 0.037
+    },
+    {
+      "text": "solid performance cc @user_2930",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.934,
+      "prob_positive": 0.934,
+      "prob_negative": 0.04,
+      "prob_neutral": 0.026
+    },
+    {
+      "text": "amazing features via @user_2809",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.89,
+      "prob_positive": 0.89,
+      "prob_negative": 0.057,
+      "prob_neutral": 0.052
+    },
+    {
+      "text": "literally finally progress via @user_1644",
+      "topic": "politics",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.845,
+      "prob_positive": 0.845,
+      "prob_negative": 0.087,
+      "prob_neutral": 0.069
+    },
+    {
+      "text": "what a comeback #cricket @user_0282",
+      "topic": "sports",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.775,
+      "prob_positive": 0.775,
+      "prob_negative": 0.123,
+      "prob_neutral": 0.102
+    },
+    {
+      "text": "totally worth it #AI @user_2063",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.893,
+      "prob_positive": 0.893,
+      "prob_negative": 0.065,
+      "prob_neutral": 0.042
+    },
+    {
+      "text": "smh following the transfer news #FIFA @user_0401",
+      "topic": "sports",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.8,
+      "prob_positive": 0.102,
+      "prob_negative": 0.098,
+      "prob_neutral": 0.8
+    },
+    {
+      "text": "actually checked the poll numbers #government",
+      "topic": "politics",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.879,
+      "prob_positive": 0.063,
+      "prob_negative": 0.058,
+      "prob_neutral": 0.879
+    },
+    {
+      "text": "following the election via @user_2408",
+      "topic": "politics",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.93,
+      "prob_positive": 0.037,
+      "prob_negative": 0.034,
+      "prob_neutral": 0.93
+    },
+    {
+      "text": "loved every scene #Hollywood @user_0629",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.817,
+      "prob_positive": 0.817,
+      "prob_negative": 0.094,
+      "prob_neutral": 0.089
+    },
+    {
+      "text": "terrible investment",
+      "topic": "finance",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.88,
+      "prob_positive": 0.08,
+      "prob_negative": 0.88,
+      "prob_neutral": 0.04
+    },
+    {
+      "text": "good governance #election @user_0338",
+      "topic": "politics",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.803,
+      "prob_positive": 0.803,
+      "prob_negative": 0.097,
+      "prob_neutral": 0.1
+    },
+    {
+      "text": "finally action cc @user_2409",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.923,
+      "prob_positive": 0.923,
+      "prob_negative": 0.04,
+      "prob_neutral": 0.037
+    },
+    {
+      "text": "wtf read the policy document",
+      "topic": "politics",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.891,
+      "prob_positive": 0.058,
+      "prob_negative": 0.052,
+      "prob_neutral": 0.891
+    },
+    {
+      "text": "inspiring speech #politics @user_1260",
+      "topic": "politics",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.776,
+      "prob_positive": 0.776,
+      "prob_negative": 0.098,
+      "prob_neutral": 0.126
+    },
+    {
+      "text": "totally worth it #startup @user_1638",
+      "topic": "tech",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.829,
+      "prob_positive": 0.829,
+      "prob_negative": 0.095,
+      "prob_neutral": 0.076
+    },
+    {
+      "text": "so many bugs",
+      "topic": "tech",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.863,
+      "prob_positive": 0.074,
+      "prob_negative": 0.863,
+      "prob_neutral": 0.063
+    },
+    {
+      "text": "just saying disgraceful performance cc @user_2614",
+      "topic": "sports",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.776,
+      "prob_positive": 0.125,
+      "prob_negative": 0.776,
+      "prob_neutral": 0.099
+    },
+    {
+      "text": "literally following the election #policy",
+      "topic": "politics",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.777,
+      "prob_positive": 0.123,
+      "prob_negative": 0.099,
+      "prob_neutral": 0.777
+    },
+    {
+      "text": "watching the trailer cc @user_1523",
+      "topic": "entertainment",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.896,
+      "prob_positive": 0.052,
+      "prob_negative": 0.052,
+      "prob_neutral": 0.896
+    },
+    {
+      "text": "data loss nightmare",
+      "topic": "tech",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.887,
+      "prob_positive": 0.06,
+      "prob_negative": 0.887,
+      "prob_neutral": 0.052
+    },
+    {
+      "text": "total incompetence #policy @user_2450",
+      "topic": "politics",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.836,
+      "prob_positive": 0.093,
+      "prob_negative": 0.836,
+      "prob_neutral": 0.071
+    },
+    {
+      "text": "zero character development via @user_2728",
+      "topic": "entertainment",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.907,
+      "prob_positive": 0.05,
+      "prob_negative": 0.907,
+      "prob_neutral": 0.043
+    },
+    {
+      "text": "cinematic masterpiece #movies",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.864,
+      "prob_positive": 0.864,
+      "prob_negative": 0.072,
+      "prob_neutral": 0.064
+    },
+    {
+      "text": "not sure what to think #politics @user_2881",
+      "topic": "politics",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.476,
+      "prob_positive": 0.244,
+      "prob_negative": 0.476,
+      "prob_neutral": 0.28
+    },
+    {
+      "text": "cinematic masterpiece via @user_2008",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.89,
+      "prob_positive": 0.89,
+      "prob_negative": 0.058,
+      "prob_neutral": 0.052
+    },
+    {
+      "text": "highly recommend #series @user_1491",
+      "topic": "entertainment",
+      "actual": "positive",
+      "predicted": "positive",
+      "correct": true,
+      "confidence": 0.857,
+      "prob_positive": 0.857,
+      "prob_negative": 0.072,
+      "prob_neutral": 0.071
+    },
+    {
+      "text": "worst update ever #coding @user_0442",
+      "topic": "tech",
+      "actual": "negative",
+      "predicted": "negative",
+      "correct": true,
+      "confidence": 0.856,
+      "prob_positive": 0.104,
+      "prob_negative": 0.856,
+      "prob_neutral": 0.04
+    },
+    {
+      "text": "not sure what to think #cricket @user_0012",
+      "topic": "sports",
+      "actual": "neutral",
+      "predicted": "negative",
+      "correct": false,
+      "confidence": 0.456,
+      "prob_positive": 0.264,
+      "prob_negative": 0.456,
+      "prob_neutral": 0.28
+    },
+    {
+      "text": "heard mixed reviews via @user_2197",
+      "topic": "entertainment",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.921,
+      "prob_positive": 0.039,
+      "prob_negative": 0.04,
+      "prob_neutral": 0.921
+    },
+    {
+      "text": "checking the changelog #movies",
+      "topic": "entertainment",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.795,
+      "prob_positive": 0.109,
+      "prob_negative": 0.096,
+      "prob_neutral": 0.795
+    },
+    {
+      "text": "read the earnings call #finance @user_0291",
+      "topic": "finance",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.73,
+      "prob_positive": 0.16,
+      "prob_negative": 0.11,
+      "prob_neutral": 0.73
+    },
+    {
+      "text": "reading the match report #sports @user_0919",
+      "topic": "sports",
+      "actual": "neutral",
+      "predicted": "neutral",
+      "correct": true,
+      "confidence": 0.9,
+      "prob_positive": 0.055,
+      "prob_negative": 0.045,
+      "prob_neutral": 0.9
+    }
+  ],
+  "misclassification_by_topic": {
+    "tech": 3,
+    "politics": 3,
+    "entertainment": 4,
+    "sports": 3,
+    "finance": 1
+  }
+}

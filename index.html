@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Twitter Sentiment Analyzer · Kunal Deokar</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
+  <style>
+    :root{
+      --bg:#f5f7fa; --white:#ffffff; --border:#e2e6ed;
+      --text:#0f172a; --body:#334155; --muted:#64748b; --dim:#94a3b8;
+      --blue:#2563eb; --blue-lt:#eff6ff; --blue-mid:#bfdbfe;
+      --green:#16a34a; --green-lt:#f0fdf4;
+      --red:#ef4444;   --red-lt:#fef2f2;
+      --orange:#f97316; --orange-lt:#fff7ed;
+      --purple:#7c3aed; --purple-lt:#f5f3ff;
+      --yellow:#d97706; --yellow-lt:#fffbeb;
+      --shadow-sm:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+      --shadow:0 4px 16px rgba(0,0,0,.07),0 1px 4px rgba(0,0,0,.04);
+      --r:14px;
+    }
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);font-size:14px}
+
+    /* HEADER */
+    header{
+      background:var(--white);border-bottom:1px solid var(--border);
+      padding:0 40px;height:66px;display:flex;align-items:center;
+      justify-content:space-between;position:sticky;top:0;z-index:100;
+      box-shadow:var(--shadow-sm);
+    }
+    .logo{display:flex;align-items:center;gap:12px}
+    .logo-icon{
+      width:38px;height:38px;border-radius:10px;flex-shrink:0;
+      background:linear-gradient(135deg,#1d9bf0,#7c3aed);
+      display:flex;align-items:center;justify-content:center;
+      font-size:18px;box-shadow:0 4px 12px rgba(29,155,240,.35);
+    }
+    .logo-text h1{font-size:1rem;font-weight:700;color:var(--text);letter-spacing:-.02em}
+    .logo-text p{font-size:0.7rem;color:var(--muted);margin-top:1px}
+    .pills{display:flex;gap:8px;align-items:center}
+    .pill{font-size:0.68rem;font-weight:500;padding:4px 12px;border-radius:20px;border:1px solid var(--border);color:var(--muted);background:var(--bg)}
+    .pill.blue{background:var(--blue-lt);border-color:var(--blue-mid);color:var(--blue)}
+    .pill.green{background:#dcfce7;border-color:#bbf7d0;color:#15803d}
+    .pill.green::before{content:'●';margin-right:5px;font-size:0.55rem}
+
+    /* FILTERS */
+    .filters{
+      background:var(--white);border-bottom:1px solid var(--border);
+      padding:12px 40px;display:flex;gap:12px;flex-wrap:wrap;align-items:flex-end;
+    }
+    .filters label{font-size:0.7rem;font-weight:600;color:var(--muted);display:flex;flex-direction:column;gap:4px}
+    .filters select{
+      background:var(--bg);color:var(--text);border:1.5px solid var(--border);
+      padding:7px 12px;border-radius:8px;font-size:0.8rem;font-family:'Inter',sans-serif;
+      min-width:148px;outline:none;transition:border .15s,box-shadow .15s;
+    }
+    .filters select:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+    .search-wrap{position:relative}
+    .search-wrap::before{content:'🔍';position:absolute;left:10px;top:50%;transform:translateY(-50%);font-size:0.75rem;pointer-events:none}
+    .search-input{
+      background:var(--bg);color:var(--text);border:1.5px solid var(--border);
+      padding:7px 12px 7px 32px;border-radius:8px;font-size:0.8rem;
+      font-family:'Inter',sans-serif;width:220px;outline:none;transition:border .15s,box-shadow .15s;
+    }
+    .search-input:focus{border-color:var(--blue);box-shadow:0 0 0 3px rgba(37,99,235,.1)}
+    .btn{background:var(--blue);color:#fff;border:none;padding:8px 20px;border-radius:8px;font-weight:600;cursor:pointer;font-size:0.8rem;font-family:'Inter',sans-serif;transition:all .15s;box-shadow:0 2px 8px rgba(37,99,235,.3)}
+    .btn:hover{background:#1d4ed8;transform:translateY(-1px)}
+    .btn-ghost{background:var(--white);color:var(--body);border:1.5px solid var(--border);padding:8px 16px;border-radius:8px;font-size:0.8rem;cursor:pointer;font-family:'Inter',sans-serif;transition:all .15s}
+    .btn-ghost:hover{border-color:var(--blue);color:var(--blue)}
+
+    /* PAGE */
+    .page{padding:28px 40px}
+
+    /* METRIC CARDS */
+    .metric-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:28px}
+    .metric-card{
+      background:var(--white);border:1px solid var(--border);border-radius:var(--r);
+      padding:20px;box-shadow:var(--shadow-sm);transition:box-shadow .2s,transform .2s;
+      position:relative;overflow:hidden;
+    }
+    .metric-card:hover{box-shadow:var(--shadow);transform:translateY(-2px)}
+    .metric-stripe{position:absolute;top:0;left:0;right:0;height:3px}
+    .metric-top{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:10px}
+    .metric-icon{width:36px;height:36px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:1rem}
+    .metric-badge{font-size:0.62rem;font-weight:600;padding:2px 7px;border-radius:5px}
+    .metric-val{font-size:2rem;font-weight:800;letter-spacing:-.04em;line-height:1}
+    .metric-label{font-size:0.72rem;font-weight:600;color:var(--body);margin-top:6px}
+    .metric-sub{font-size:0.67rem;color:var(--dim);margin-top:3px}
+
+    /* SECTION */
+    .sec-title{font-size:0.7rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+    .sec-title::after{content:'';flex:1;height:1px;background:var(--border)}
+
+    /* CHART CARDS */
+    .g2{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:20px}
+    .g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px}
+    .g4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-bottom:20px}
+    .card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);padding:22px;box-shadow:var(--shadow-sm);transition:box-shadow .2s}
+    .card:hover{box-shadow:var(--shadow)}
+    .card.full{grid-column:1/-1}
+    .card.span2{grid-column:span 2}
+    .card-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:18px;gap:8px}
+    .card-title{font-size:0.85rem;font-weight:700;color:var(--text)}
+    .card-sub{font-size:0.67rem;color:var(--muted);margin-top:2px}
+    .ctag{font-size:0.65rem;font-weight:600;padding:3px 9px;border-radius:6px;white-space:nowrap}
+    .t-blue{background:var(--blue-lt);color:var(--blue)}
+    .t-green{background:var(--green-lt);color:var(--green)}
+    .t-red{background:var(--red-lt);color:var(--red)}
+    .t-purple{background:var(--purple-lt);color:var(--purple)}
+    .t-orange{background:var(--orange-lt);color:var(--orange)}
+    .t-yellow{background:var(--yellow-lt);color:var(--yellow)}
+
+    /* CONFUSION MATRIX */
+    .cm-wrap{display:flex;align-items:center;justify-content:center;padding:8px 0}
+    .cm-table{border-collapse:collapse;font-size:0.78rem}
+    .cm-table th{padding:8px 14px;color:var(--muted);font-weight:600;font-size:0.68rem;text-align:center}
+    .cm-table td{padding:12px 18px;text-align:center;border-radius:4px;font-weight:700;font-size:0.9rem;min-width:60px}
+    .cm-axis{color:var(--muted);font-size:0.68rem;font-weight:600;writing-mode:vertical-rl;text-orientation:mixed;transform:rotate(180deg);padding:0 6px}
+
+    /* FEATURE TABLE */
+    .feat-cols{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+    .feat-col h4{font-size:0.75rem;font-weight:700;margin-bottom:10px;padding:6px 10px;border-radius:7px;text-align:center}
+    .feat-item{display:flex;align-items:center;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-size:0.75rem}
+    .feat-item:last-child{border-bottom:none}
+    .feat-word{font-family:'Courier New',monospace;color:var(--text);font-weight:500}
+    .feat-bar-wrap{display:flex;align-items:center;gap:6px;flex:1;margin-left:10px}
+    .feat-bar{height:5px;border-radius:3px;min-width:4px}
+    .feat-score{font-size:0.68rem;color:var(--muted);white-space:nowrap}
+
+    /* TABLE */
+    .table-card{background:var(--white);border:1px solid var(--border);border-radius:var(--r);box-shadow:var(--shadow-sm);overflow:hidden}
+    .table-hdr{padding:16px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+    .table-hdr h3{font-size:0.85rem;font-weight:700;color:var(--text)}
+    .tbl-count{font-size:0.7rem;padding:3px 10px;border-radius:6px;background:var(--bg);border:1px solid var(--border);color:var(--muted)}
+    .tbl-scroll{overflow-x:auto}
+    table{width:100%;border-collapse:collapse;font-size:0.78rem}
+    thead tr{background:var(--bg)}
+    th{padding:10px 16px;text-align:left;color:var(--muted);font-weight:600;font-size:0.68rem;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap;border-bottom:1px solid var(--border)}
+    td{padding:10px 16px;border-bottom:1px solid var(--border);color:var(--body)}
+    tbody tr:last-child td{border-bottom:none}
+    tbody tr:hover td{background:#f8fafc}
+    .badge{display:inline-flex;align-items:center;padding:2px 9px;border-radius:6px;font-size:0.67rem;font-weight:700}
+    .pos{background:#dcfce7;color:#15803d}
+    .neg{background:#fee2e2;color:#dc2626}
+    .neu{background:#f1f5f9;color:#475569}
+    .correct-y{color:var(--green);font-weight:600}
+    .correct-n{color:var(--red);font-weight:600}
+    .conf-bar{display:inline-block;height:6px;border-radius:3px;vertical-align:middle;margin-right:6px}
+
+    /* FOOTER */
+    footer{background:var(--white);border-top:1px solid var(--border);margin-top:8px;padding:20px 40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+    .f-left{font-size:0.72rem;color:var(--muted);display:flex;align-items:center;gap:8px}
+    .stag{font-size:0.65rem;padding:2px 8px;border-radius:5px;background:var(--bg);border:1px solid var(--border);color:var(--muted)}
+    .f-right{font-size:0.72rem;display:flex;gap:16px}
+    .f-right a{color:var(--blue);text-decoration:none;font-weight:500}
+    .f-right a:hover{text-decoration:underline}
+
+    @media(max-width:1200px){.metric-grid{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:1fr 1fr}}
+    @media(max-width:900px){.metric-grid{grid-template-columns:1fr 1fr}.g2,.g3,.g4{grid-template-columns:1fr}.card.full,.card.span2{grid-column:span 1}header,.filters,.page,footer{padding-left:20px;padding-right:20px}}
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">🐦</div>
+    <div class="logo-text">
+      <h1>Twitter Sentiment Analyzer</h1>
+      <p id="gen-at">Loading model results…</p>
+    </div>
+  </div>
+  <div class="pills">
+    <span class="pill green">95% Accuracy</span>
+    <span class="pill blue">TF-IDF + Logistic Regression</span>
+    <span class="pill">3,000 Tweets · 5 Topics</span>
+  </div>
+</header>
+
+<div class="filters">
+  <label>Topic
+    <select id="f-topic">
+      <option value="ALL">All Topics</option>
+      <option>tech</option><option>sports</option><option>politics</option>
+      <option>entertainment</option><option>finance</option>
+    </select>
+  </label>
+  <label>Sentiment
+    <select id="f-sent">
+      <option value="ALL">All Sentiments</option>
+      <option>positive</option><option>negative</option><option>neutral</option>
+    </select>
+  </label>
+  <label>Prediction
+    <select id="f-correct">
+      <option value="ALL">All Predictions</option>
+      <option value="true">Correct Only</option>
+      <option value="false">Misclassified Only</option>
+    </select>
+  </label>
+  <button class="btn" onclick="applyFilters()">Apply</button>
+  <button class="btn-ghost" onclick="resetFilters()">Reset</button>
+  <div style="margin-left:auto">
+    <label style="font-size:0.7rem;font-weight:600;color:var(--muted);display:flex;flex-direction:column;gap:4px">
+      Search Tweets
+      <div class="search-wrap">
+        <input class="search-input" id="tbl-search" type="text" placeholder="keyword, topic, sentiment…" oninput="searchTable()"/>
+      </div>
+    </label>
+  </div>
+</div>
+
+<div class="page">
+
+  <!-- METRIC CARDS -->
+  <div class="metric-grid">
+    <div class="metric-card">
+      <div class="metric-stripe" style="background:#2563eb"></div>
+      <div class="metric-top">
+        <div class="metric-icon" style="background:#eff6ff">🐦</div>
+        <span class="metric-badge" style="background:#eff6ff;color:#2563eb">Dataset</span>
+      </div>
+      <div class="metric-val" style="color:#2563eb" id="m-total">—</div>
+      <div class="metric-label">Tweets Analyzed</div>
+      <div class="metric-sub">3,000 labeled samples</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-stripe" style="background:#16a34a"></div>
+      <div class="metric-top">
+        <div class="metric-icon" style="background:#f0fdf4">🎯</div>
+        <span class="metric-badge" style="background:#f0fdf4;color:#16a34a">Test Set</span>
+      </div>
+      <div class="metric-val" style="color:#16a34a" id="m-acc">—</div>
+      <div class="metric-label">Test Accuracy</div>
+      <div class="metric-sub" id="m-cv">CV: — ± —</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-stripe" style="background:#7c3aed"></div>
+      <div class="metric-top">
+        <div class="metric-icon" style="background:#f5f3ff">📈</div>
+        <span class="metric-badge" style="background:#f5f3ff;color:#7c3aed">OVR</span>
+      </div>
+      <div class="metric-val" style="color:#7c3aed" id="m-auc">—</div>
+      <div class="metric-label">ROC-AUC Score</div>
+      <div class="metric-sub">Weighted one-vs-rest</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-stripe" style="background:#f97316"></div>
+      <div class="metric-top">
+        <div class="metric-icon" style="background:#fff7ed">🔤</div>
+        <span class="metric-badge" style="background:#fff7ed;color:#c2410c">TF-IDF</span>
+      </div>
+      <div class="metric-val" style="color:#f97316" id="m-vocab">—</div>
+      <div class="metric-label">Feature Dimensions</div>
+      <div class="metric-sub">Unigram + bigram</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-stripe" style="background:#0891b2"></div>
+      <div class="metric-top">
+        <div class="metric-icon" style="background:#ecfeff">🧪</div>
+        <span class="metric-badge" style="background:#ecfeff;color:#0e7490">Split</span>
+      </div>
+      <div class="metric-val" style="color:#0891b2" id="m-test">—</div>
+      <div class="metric-label">Test Samples</div>
+      <div class="metric-sub">80/20 stratified split</div>
+    </div>
+  </div>
+
+  <!-- MODEL PERFORMANCE -->
+  <div class="sec-title">Model Performance</div>
+  <div class="g3" style="margin-bottom:20px">
+    <div class="card">
+      <div class="card-header">
+        <div><div class="card-title">Precision · Recall · F1 per Class</div><div class="card-sub">Classification report breakdown</div></div>
+        <span class="ctag t-green">Per Class</span>
+      </div>
+      <canvas id="c-prf" height="160"></canvas>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div><div class="card-title">Confusion Matrix</div><div class="card-sub">Actual vs predicted labels</div></div>
+        <span class="ctag t-blue">Test Set · 600</span>
+      </div>
+      <div class="cm-wrap" id="cm-wrap"></div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div><div class="card-title">Sentiment Distribution</div><div class="card-sub">Ground truth label breakdown</div></div>
+        <span class="ctag t-purple">3,000 tweets</span>
+      </div>
+      <canvas id="c-dist" height="160"></canvas>
+    </div>
+  </div>
+
+  <!-- TRENDS & TOPICS -->
+  <div class="sec-title">Data Insights</div>
+  <div class="g2">
+    <div class="card">
+      <div class="card-header">
+        <div><div class="card-title">Monthly Sentiment Trend</div><div class="card-sub">Positive / Negative / Neutral tweet volume over time</div></div>
+        <span class="ctag t-blue">2024</span>
+      </div>
+      <canvas id="c-monthly" height="130"></canvas>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div><div class="card-title">Sentiment by Topic</div><div class="card-sub">Distribution of sentiments across each topic</div></div>
+        <span class="ctag t-orange">5 Topics</span>
+      </div>
+      <canvas id="c-topic" height="130"></canvas>
+    </div>
+  </div>
+
+  <!-- TOP FEATURES -->
+  <div class="sec-title">Top TF-IDF Features per Sentiment</div>
+  <div class="card full" style="margin-bottom:20px">
+    <div class="card-header">
+      <div><div class="card-title">Most Discriminative Words &amp; Bigrams</div><div class="card-sub">Logistic Regression coefficients — highest weighted features per class</div></div>
+      <span class="ctag t-purple">Coefficients</span>
+    </div>
+    <div class="feat-cols" id="feat-cols"></div>
+  </div>
+
+  <!-- PREDICTIONS TABLE -->
+  <div class="sec-title">Sample Predictions</div>
+  <div class="table-card">
+    <div class="table-hdr">
+      <h3>Prediction Results</h3>
+      <span class="tbl-count" id="tbl-info">— records</span>
+    </div>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr>
+          <th>Tweet</th><th>Topic</th><th>Actual</th><th>Predicted</th>
+          <th>Correct</th><th>Confidence</th><th>P(pos)</th><th>P(neg)</th><th>P(neu)</th>
+        </tr></thead>
+        <tbody id="tbl-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="f-left">
+    <span>ML Stack</span>
+    <span class="stag">Python</span><span class="stag">scikit-learn</span>
+    <span class="stag">TF-IDF</span><span class="stag">Logistic Regression</span>
+    <span class="stag">Pandas</span><span class="stag">NumPy</span>
+  </div>
+  <div class="f-right">
+    <a href="https://github.com/aiwithkd" target="_blank">Kunal Deokar ↗</a>
+    <a href="https://github.com/aiwithkd/twitter-sentiment-analyzer" target="_blank">View Source on GitHub ↗</a>
+  </div>
+</footer>
+
+<script>
+let R = null, currentRows = [], charts = {};
+const GRID="#e2e6ed", TICK="#94a3b8";
+const TTP = { backgroundColor:"#fff", borderColor:"#e2e6ed", borderWidth:1, titleColor:"#0f172a", bodyColor:"#64748b", padding:12, boxPadding:4, cornerRadius:8 };
+
+function dc(id){ if(charts[id]){ charts[id].destroy(); delete charts[id]; } }
+
+const SENT_COLORS = { positive:"#16a34a", negative:"#ef4444", neutral:"#64748b" };
+const SENT_BG     = { positive:"#dcfce7", negative:"#fee2e2", neutral:"#f1f5f9" };
+
+function barChart(id, labels, datasets, opts={}){
+  dc(id);
+  charts[id] = new Chart(document.getElementById(id),{
+    type:"bar",
+    data:{ labels, datasets },
+    options:{
+      responsive:true, maintainAspectRatio:true, indexAxis: opts.horizontal?"y":"x",
+      plugins:{ legend: opts.legend ? { labels:{ color:"#64748b", font:{size:11}, usePointStyle:true, pointStyleWidth:8 } } : { display:false }, tooltip:{...TTP, mode:"index", intersect:false} },
+      scales:{
+        x:{ ticks:{ color:TICK, font:{size:11}, maxRotation: opts.rotate||0 }, grid:{ color: opts.horizontal ? GRID : "transparent" }, border:{color:GRID}, stacked: opts.stacked||false },
+        y:{ ticks:{ color: opts.horizontal ? "#334155" : TICK, font:{size:11} }, grid:{ color: opts.horizontal ? "transparent" : GRID }, border:{color:GRID}, stacked: opts.stacked||false, beginAtZero:true }
+      }
+    }
+  });
+}
+
+function doughnutChart(id, labels, data, colors){
+  dc(id);
+  charts[id] = new Chart(document.getElementById(id),{
+    type:"doughnut",
+    data:{ labels, datasets:[{ data, backgroundColor:colors, borderWidth:3, borderColor:"#fff", hoverOffset:8 }]},
+    options:{ responsive:true, maintainAspectRatio:true, cutout:"62%", plugins:{ legend:{ position:"bottom", labels:{ color:"#64748b", font:{size:11}, padding:14, usePointStyle:true, pointStyleWidth:8 } }, tooltip:TTP } }
+  });
+}
+
+function lineChart(id, labels, datasets){
+  dc(id);
+  charts[id] = new Chart(document.getElementById(id),{
+    type:"line",
+    data:{ labels, datasets },
+    options:{
+      responsive:true, maintainAspectRatio:true,
+      plugins:{ legend:{ labels:{ color:"#64748b", font:{size:11}, usePointStyle:true, pointStyleWidth:8 } }, tooltip:{...TTP, mode:"index", intersect:false} },
+      scales:{
+        x:{ ticks:{ color:TICK, maxTicksLimit:8, font:{size:11} }, grid:{ color:GRID }, border:{color:GRID} },
+        y:{ ticks:{ color:TICK, font:{size:11} }, grid:{ color:GRID }, border:{color:GRID}, beginAtZero:true }
+      }
+    }
+  });
+}
+
+function renderMetrics(){
+  const m = R.metrics, d = R.dataset;
+  document.getElementById("m-total").textContent = d.total_tweets.toLocaleString();
+  document.getElementById("m-acc").textContent   = (m.accuracy * 100).toFixed(1) + "%";
+  document.getElementById("m-auc").textContent   = m.roc_auc_weighted.toFixed(3);
+  document.getElementById("m-vocab").textContent = d.tfidf_features.toLocaleString();
+  document.getElementById("m-test").textContent  = d.test_size.toLocaleString();
+  document.getElementById("m-cv").textContent    = `CV F1: ${(m.cv_f1_mean*100).toFixed(1)}% ± ${(m.cv_f1_std*100).toFixed(1)}%`;
+  document.getElementById("gen-at").textContent  = `${d.total_tweets.toLocaleString()} tweets · TF-IDF (${d.tfidf_features} features) · Logistic Regression · ${R.generated_at}`;
+}
+
+function renderPRF(){
+  const m = R.metrics.per_class;
+  const classes = ["positive","negative","neutral"];
+  barChart("c-prf", classes, [
+    { label:"Precision", data:classes.map(c=>+(m[c].precision*100).toFixed(1)), backgroundColor:"#2563eb", borderRadius:4, borderSkipped:false },
+    { label:"Recall",    data:classes.map(c=>+(m[c].recall*100).toFixed(1)),    backgroundColor:"#16a34a", borderRadius:4, borderSkipped:false },
+    { label:"F1 Score",  data:classes.map(c=>+(m[c]["f1"]*100).toFixed(1)),    backgroundColor:"#7c3aed", borderRadius:4, borderSkipped:false },
+  ],{ legend:true });
+}
+
+function renderCM(){
+  const cm = R.confusion_matrix;
+  const labels = cm.labels;
+  const matrix = cm.matrix;
+  const max = Math.max(...matrix.flat());
+  const colors = { positive:["#bbf7d0","#4ade80","#16a34a"], negative:["#fecaca","#f87171","#ef4444"], neutral:["#e2e8f0","#94a3b8","#475569"] };
+  function cellColor(r, c, v){
+    if(r===c) return colors[labels[r]][2];
+    return v > max*0.1 ? colors[labels[r]][1] : colors[labels[r]][0];
+  }
+  let html = `<table class="cm-table">
+    <tr><td></td><td></td><th colspan="${labels.length}" style="text-align:center;padding-bottom:4px;color:var(--muted)">Predicted</th></tr>
+    <tr><td class="cm-axis" rowspan="${labels.length+1}">Actual</td>
+        <td></td>${labels.map(l=>`<th>${l}</th>`).join("")}</tr>`;
+  matrix.forEach((row,r)=>{
+    html += `<tr><th style="text-align:right">${labels[r]}</th>`;
+    row.forEach((v,c)=>{
+      const bg = cellColor(r,c,v);
+      const color = r===c ? "#fff" : "#334155";
+      html += `<td style="background:${bg};color:${color}">${v}</td>`;
+    });
+    html += `</tr>`;
+  });
+  html += "</table>";
+  document.getElementById("cm-wrap").innerHTML = html;
+}
+
+function renderDist(){
+  const d = R.dataset.sentiment_dist;
+  doughnutChart("c-dist",
+    Object.keys(d),
+    Object.values(d),
+    ["#16a34a","#ef4444","#64748b"]
+  );
+}
+
+function renderMonthly(){
+  const raw = R.monthly_trend;
+  const months = [...new Set(raw.map(r=>r.month))].sort();
+  const sentiments = ["positive","negative","neutral"];
+  const map = {};
+  raw.forEach(r=>{ map[`${r.month}_${r.sentiment}`] = r.count; });
+  lineChart("c-monthly", months, sentiments.map(s=>({
+    label: s.charAt(0).toUpperCase()+s.slice(1),
+    data: months.map(m=>map[`${m}_${s}`]||0),
+    borderColor: SENT_COLORS[s],
+    backgroundColor: SENT_COLORS[s]+"18",
+    fill:false, tension:0.4, pointRadius:2, borderWidth:2
+  })));
+}
+
+function renderTopicSentiment(){
+  const raw = R.topic_sentiment;
+  const topics = [...new Set(raw.map(r=>r.topic))].sort();
+  const sentiments = ["positive","negative","neutral"];
+  const map = {};
+  raw.forEach(r=>{ map[`${r.topic}_${r.sentiment}`] = r.count; });
+  barChart("c-topic", topics, sentiments.map(s=>({
+    label: s.charAt(0).toUpperCase()+s.slice(1),
+    data: topics.map(t=>map[`${t}_${s}`]||0),
+    backgroundColor: SENT_COLORS[s], borderRadius:4, borderSkipped:false
+  })),{ legend:true, stacked:true });
+}
+
+function renderFeatures(){
+  const f = R.top_features;
+  const classes = ["positive","negative","neutral"];
+  const titles  = { positive:"Positive Indicators", negative:"Negative Indicators", neutral:"Neutral Indicators" };
+  const hdrColors = { positive:"background:#dcfce7;color:#15803d", negative:"background:#fee2e2;color:#dc2626", neutral:"background:#f1f5f9;color:#475569" };
+  const barColors = { positive:"#16a34a", negative:"#ef4444", neutral:"#64748b" };
+  const top8 = arr => arr.slice(0,8);
+  const maxW  = cls => Math.max(...top8(f[cls]).map(x=>x.weight));
+
+  document.getElementById("feat-cols").innerHTML = classes.map(cls=>`
+    <div class="feat-col">
+      <h4 style="${hdrColors[cls]}">${titles[cls]}</h4>
+      ${top8(f[cls]).map(item=>`
+        <div class="feat-item">
+          <span class="feat-word">${item.word}</span>
+          <div class="feat-bar-wrap">
+            <div class="feat-bar" style="width:${Math.round(item.weight/maxW(cls)*80)}px;background:${barColors[cls]}"></div>
+            <span class="feat-score">${item.weight.toFixed(3)}</span>
+          </div>
+        </div>`).join("")}
+    </div>`).join("");
+}
+
+function applyFilters(){
+  if(!R) return;
+  const topic   = document.getElementById("f-topic").value;
+  const sent    = document.getElementById("f-sent").value;
+  const correct = document.getElementById("f-correct").value;
+  currentRows = R.sample_predictions.filter(r=>
+    (topic==="ALL"||r.topic===topic) &&
+    (sent==="ALL"||r.actual===sent) &&
+    (correct==="ALL"||(correct==="true"?r.correct:!r.correct))
+  );
+  renderTable(currentRows);
+}
+
+function resetFilters(){
+  ["f-topic","f-sent","f-correct"].forEach(id=>document.getElementById(id).value="ALL");
+  document.getElementById("tbl-search").value="";
+  currentRows = R.sample_predictions;
+  renderTable(currentRows);
+}
+
+function searchTable(){
+  const q = document.getElementById("tbl-search").value.toLowerCase();
+  renderTable(currentRows.filter(r=>
+    r.text.toLowerCase().includes(q)||
+    r.topic.toLowerCase().includes(q)||
+    r.actual.toLowerCase().includes(q)||
+    r.predicted.toLowerCase().includes(q)
+  ));
+}
+
+function sentBadge(s){ return `<span class="badge ${s==="positive"?"pos":s==="negative"?"neg":"neu"}">${s}</span>`; }
+
+function renderTable(rows){
+  document.getElementById("tbl-info").textContent = rows.length.toLocaleString()+" records";
+  document.getElementById("tbl-body").innerHTML = rows.map(r=>`
+    <tr>
+      <td style="max-width:320px;white-space:normal;font-size:0.75rem;color:var(--text)">${r.text}</td>
+      <td style="font-size:0.72rem;color:var(--muted)">${r.topic}</td>
+      <td>${sentBadge(r.actual)}</td>
+      <td>${sentBadge(r.predicted)}</td>
+      <td class="${r.correct?'correct-y':'correct-n'}">${r.correct?'✓':'✗'}</td>
+      <td>
+        <div class="conf-bar" style="width:${Math.round(r.confidence*48)}px;background:${r.correct?'#16a34a':'#ef4444'}"></div>
+        ${(r.confidence*100).toFixed(1)}%
+      </td>
+      <td style="color:#16a34a;font-size:0.73rem">${(r.prob_positive*100).toFixed(1)}%</td>
+      <td style="color:#ef4444;font-size:0.73rem">${(r.prob_negative*100).toFixed(1)}%</td>
+      <td style="color:#64748b;font-size:0.73rem">${(r.prob_neutral*100).toFixed(1)}%</td>
+    </tr>`).join("");
+}
+
+fetch("https://raw.githubusercontent.com/aiwithkd/twitter-sentiment-analyzer/main/output/results.json")
+  .then(r=>r.json())
+  .then(data=>{
+    R = data;
+    currentRows = R.sample_predictions;
+    renderMetrics();
+    renderPRF();
+    renderCM();
+    renderDist();
+    renderMonthly();
+    renderTopicSentiment();
+    renderFeatures();
+    renderTable(currentRows);
+  })
+  .catch(err=>{
+    document.querySelector(".page").innerHTML=`
+      <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;padding:80px;gap:16px;text-align:center">
+        <div style="font-size:2.5rem">⚠️</div>
+        <div style="font-weight:700;color:#ef4444">Failed to load results</div>
+        <div style="color:#64748b;font-size:0.82rem">${err}</div>
+        <a href="https://github.com/aiwithkd/twitter-sentiment-analyzer" style="color:#2563eb;font-weight:500">View on GitHub ↗</a>
+      </div>`;
+  });
+</script>
+</body>
+</html>
