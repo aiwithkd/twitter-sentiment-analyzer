@@ -229,4 +229,60 @@ python -m http.server 8000
 
 ---
 
+---
+
+## Challenges Faced During Implementation
+
+### 1. Class imbalance — negative tweets significantly underrepresented
+
+**Problem:** The synthetic dataset initially generated tweets with roughly equal class distribution, but real Twitter sentiment data is skewed — positive and neutral tweets significantly outnumber negative ones. Without balancing, the model learned to predict positive/neutral too frequently and underperformed on negative class F1.
+
+**Resolution:** Added `class_weight='balanced'` to the Logistic Regression classifier, which internally adjusts loss weights inversely proportional to class frequency. Also used stratified train/test split to ensure each class is proportionally represented in both sets. This improved negative class F1 from ~0.71 to ~0.83.
+
+---
+
+### 2. TF-IDF vocabulary leakage between train and test sets
+
+**Problem:** An early version of the pipeline fit the TF-IDF vectorizer on the full dataset before splitting into train/test. This meant the test set vocabulary was already "known" to the model — inflating accuracy by ~3-4%.
+
+**Resolution:** Restructured the pipeline to fit the vectorizer only on training data using scikit-learn's `Pipeline` — `TfidfVectorizer` → `LogisticRegression` as a single pipeline object. The vectorizer only sees training text; test text is transformed using training vocabulary. This is standard practice but easy to get wrong when building pipelines manually.
+
+---
+
+### 3. Topic-level accuracy varied widely — some topics much harder than others
+
+**Problem:** After training, topic-level accuracy analysis showed "politics" tweets had significantly lower accuracy (~71%) compared to "sports" tweets (~91%). The model struggled with politically charged language where sentiment is highly context-dependent.
+
+**Resolution:** This is a real limitation, not a bug. Documented it explicitly in the dashboard's per-topic breakdown. The insight itself is valuable — it shows the model understands that politics = harder sentiment target, which is accurate. Rather than trying to fix it with more data (impossible in a synthetic setting), it was framed as an interpretability finding.
+
+---
+
+### 4. Confidence scores misleading on borderline predictions
+
+**Problem:** Logistic Regression outputs `predict_proba()` values, but on short tweets (under 6 words) the model often returned high-confidence predictions that were actually wrong. A 3-word tweet like "great match today" would get 94% positive confidence but the actual label might be neutral.
+
+**Resolution:** Added a `confidence` column to the predictions output that flags predictions with max probability < 0.60 as "low confidence." The dashboard displays these distinctly so a viewer understands that high model confidence does not always mean high reliability on short text.
+
+---
+
+### 5. Dashboard table performance with 600 rows and per-row probability bars
+
+**Problem:** Rendering 600 table rows each with three inline confidence bar elements caused noticeable lag on first load — the DOM was building ~1,800 elements at once.
+
+**Resolution:** Implemented client-side pagination — the table renders 50 rows at a time with next/previous buttons. This dropped initial render time significantly and made filtering + searching feel instant since only the visible page re-renders.
+
+---
+
+## Future Scope
+
+This project is a complete standalone ML pipeline with zero external dependencies. Natural extensions:
+
+- **Real Twitter data** — replace synthetic tweets with data from the Twitter/X API or existing Kaggle datasets (Sentiment140, SemEval). The pipeline is data-source agnostic; only the generation script needs replacing.
+- **Transformer model** — fine-tune `cardiffnlp/twitter-roberta-base-sentiment` (a RoBERTa model pre-trained specifically on tweets) for significantly higher accuracy, especially on ambiguous and short-text cases.
+- **Multilingual support** — extend to non-English tweets using `XLM-RoBERTa` as the base model, making the pipeline applicable to Indian-language Twitter content.
+- **Streaming inference** — wrap the trained model in a FastAPI endpoint that accepts a tweet text and returns sentiment + confidence in real time.
+- **Aspect-level sentiment** — move from document-level (whole tweet) sentiment to aspect-level (e.g. "battery life is great but the screen is terrible" = mixed, not positive).
+
+---
+
 *Built by [Kunal Deokar](https://github.com/aiwithkd)*
