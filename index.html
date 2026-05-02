@@ -160,6 +160,29 @@
 
     @media(max-width:1200px){.metric-grid{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:1fr 1fr}}
     @media(max-width:900px){.metric-grid{grid-template-columns:1fr 1fr}.g2,.g3,.g4{grid-template-columns:1fr}.card.full,.card.span2{grid-column:span 1}header,.filters,.page,footer{padding-left:20px;padding-right:20px}}
+    @media(max-width:768px){
+      header{padding:0 16px;height:auto;min-height:56px;flex-wrap:wrap;gap:8px;padding-top:10px;padding-bottom:10px}
+      .logo-text h1{font-size:.85rem}
+      .header-pills{gap:6px}
+      .pill{font-size:.62rem;padding:3px 8px}
+      .filters{padding:10px 16px;gap:8px;overflow-x:auto;flex-wrap:nowrap;-webkit-overflow-scrolling:touch}
+      .filters label{flex-shrink:0}
+      .filters select{min-width:110px;font-size:.75rem}
+      .search-wrap input{width:140px}
+      .btn,.btn-ghost{padding:7px 12px;font-size:.75rem}
+      .page{padding:16px}
+      .metric-grid{grid-template-columns:1fr 1fr;gap:10px}
+      .card{padding:16px}
+      .tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+      table{font-size:.7rem;min-width:580px}
+      footer{flex-direction:column;align-items:flex-start;padding:16px;gap:10px}
+      .fl{flex-wrap:wrap}
+    }
+    @media(max-width:480px){
+      .metric-grid{grid-template-columns:1fr}
+      .logo-text p{display:none}
+      .filters{gap:6px}
+    }
   </style>
 </head>
 <body>
